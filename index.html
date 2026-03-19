@@ -328,6 +328,105 @@
     font-weight: 500;
   }
 
+  /* ── DISCOUNT BANNER ── */
+  .discount-banner {
+    max-width: 960px;
+    margin: 48px auto 0;
+    padding: 0 32px;
+  }
+
+  .discount-inner {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 32px;
+    padding: 32px 36px;
+  }
+
+  .discount-left {}
+
+  .discount-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .discount-dot {
+    width: 5px; height: 5px;
+    border-radius: 0;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .discount-eyebrow-text {
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .discount-heading {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.25;
+    margin: 0 0 8px;
+  }
+
+  .discount-body {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 0;
+    max-width: 480px;
+  }
+
+  .discount-body strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .discount-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--accent);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 13px 24px;
+    border: 1px solid var(--accent);
+    white-space: nowrap;
+    transition: background 0.15s, border-color 0.15s;
+    flex-shrink: 0;
+  }
+
+  .discount-btn:hover {
+    background: #0F6E56;
+    border-color: #0F6E56;
+  }
+
+  .discount-btn-arrow {
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  @media (max-width: 720px) {
+    .discount-banner { padding-left: 20px; padding-right: 20px; }
+    .discount-inner {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 24px 24px;
+    }
+    .discount-btn { width: 100%; justify-content: center; }
+  }
+
   /* ── FOOTER ── */
   .page-footer {
     max-width: 960px;
@@ -402,6 +501,22 @@
 </div>
 
 <div class="container" id="products"></div>
+
+<div class="discount-banner">
+  <div class="discount-inner">
+    <div class="discount-left">
+      <div class="discount-eyebrow">
+        <span class="discount-dot"></span>
+        <span class="discount-eyebrow-text">Get a discount</span>
+      </div>
+      <p class="discount-heading">Leave a review, get a discount on your next order</p>
+      <p class="discount-body">After leaving your review, send a screenshot to us via our website and we'll send you a <strong>discount code</strong> for your next purchase. Takes less than a minute.</p>
+    </div>
+    <a class="discount-btn" href="https://specfive.com/pages/contact" target="_blank">
+      Send Screenshot <span class="discount-btn-arrow">↗</span>
+    </a>
+  </div>
+</div>
 
 <footer class="page-footer">
   <div class="footer-brand">
