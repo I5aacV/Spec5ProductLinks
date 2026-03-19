@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SpecFive — Leave a Review</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #00FF88;
+    --bg: #0D0D0D;
+    --surface: #181818;
+    --surface2: #222222;
+    --border: #2E2E2E;
+    --text: #FFFFFF;
+    --muted: #999999;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Barlow', sans-serif;
+    min-height: 100vh;
+    padding-bottom: 80px;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px);
+    background-size: 44px 44px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 52px 24px 36px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo-circle {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: #0D0D0D;
+    border: 2px solid var(--green);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 30px; font-weight: 800;
+    color: var(--green);
+  }
+  .logo-circle sup { font-size: 15px; vertical-align: super; }
+
+  h1 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 44px; font-weight: 800;
+    letter-spacing: 2px; text-transform: uppercase;
+    line-height: 1;
+  }
+  h1 span { color: var(--green); }
+
+  .subtitle {
+    font-size: 17px; color: var(--muted);
+    margin-top: 10px; letter-spacing: 0.5px;
+  }
+
+  .instruction {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 20px;
+    background: rgba(0,255,136,0.07);
+    border: 1px solid rgba(0,255,136,0.2);
+    border-radius: 100px;
+    padding: 12px 24px;
+    font-size: 16px; color: var(--green);
+    font-weight: 600;
+  }
+
+  .container {
+    position: relative; z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 36px 16px 0;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+
+  /* PRODUCT BLOCK */
+  .product-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .product-block.open {
+    border-color: rgba(0,255,136,0.25);
+  }
+
+  /* HEADER — the tappable row */
+  .product-header {
+    display: flex; align-items: center;
+    gap: 14px;
+    padding: 20px 20px 20px 20px;
+    cursor: pointer;
+    user-select: none;
+    background: var(--surface2);
+    transition: background 0.15s;
+  }
+  .product-header:hover { background: #282828; }
+  .product-block.open .product-header {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .product-num {
+    width: 44px; height: 44px;
+    border-radius: 10px;
+    background: rgba(0,255,136,0.1);
+    border: 1px solid rgba(0,255,136,0.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px; font-weight: 800; color: var(--green);
+    flex-shrink: 0;
+  }
+
+  .product-header-text { flex: 1; }
+
+  .product-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 26px; font-weight: 800;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .product-hint {
+    font-size: 13px; color: var(--muted);
+    margin-top: 3px;
+    font-weight: 600; letter-spacing: 0.3px;
+  }
+  .product-block.open .product-hint { display: none; }
+
+  .chevron {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: transform 0.25s, background 0.15s;
+  }
+  .product-block.open .chevron {
+    transform: rotate(180deg);
+    background: rgba(0,255,136,0.1);
+    border-color: rgba(0,255,136,0.3);
+  }
+  .chevron svg { width: 14px; height: 14px; color: var(--muted); }
+  .product-block.open .chevron svg { color: var(--green); }
+
+  /* COLLAPSIBLE BODY */
+  .product-body {
+    display: none;
+  }
+  .product-block.open .product-body {
+    display: block;
+  }
+
+  /* VARIANT SECTIONS */
+  .variant-section {
+    padding: 22px 20px 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .variant-section:last-child { border-bottom: none; }
+
+  .variant-type-label {
+    font-size: 14px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .type-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+  .dot-mesh     { background: #00FF88; }
+  .dot-atak     { background: #00B4FF; }
+  .dot-meshcore { background: #FFA500; }
+  .label-mesh     { color: #00FF88; }
+  .label-atak     { color: #00B4FF; }
+  .label-meshcore { color: #FFA500; }
+
+  .color-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .color-btn {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 10px;
+    background: var(--bg);
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 10px;
+    text-decoration: none;
+    transition: border-color 0.15s, background 0.15s, transform 0.1s;
+    cursor: pointer;
+    min-height: 110px;
+  }
+  .color-btn:hover {
+    background: #1c1c1c;
+    border-color: #555;
+    transform: scale(1.02);
+  }
+  .color-btn:active { transform: scale(0.98); }
+
+  .color-swatch {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.15);
+    flex-shrink: 0;
+  }
+  .swatch-black       { background: #1A1A1A; border-color: #555; }
+  .swatch-white       { background: #F0F0F0; border-color: #ccc; }
+  .swatch-standard    { background: #4A4A4A; border-color: #777; }
+  .swatch-spec5green  { background: #00FF88; border-color: #00cc6a; }
+  .swatch-tacgreen    { background: #3B5323; border-color: #5a7a40; }
+  .swatch-desert      { background: #C2A06E; border-color: #a87d47; }
+
+  .color-label {
+    font-size: 13px; font-weight: 700;
+    color: #CCCCCC;
+    text-align: center;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+
+  .review-tag {
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    color: var(--green);
+    opacity: 0.75;
+  }
+
+  .footer {
+    position: relative; z-index: 1;
+    text-align: center; margin-top: 56px;
+    font-size: 14px; color: var(--muted); letter-spacing: 1px;
+  }
+  .footer a { color: var(--green); text-decoration: none; }
+
+  @media (max-width: 480px) {
+    .color-grid { grid-template-columns: repeat(2, 1fr); }
+    .product-name { font-size: 22px; }
+    h1 { font-size: 36px; }
+    .color-btn { min-height: 100px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="logo-circle">S<sup>5</sup></div>
+  <h1>Leave Us a <span>Review</span></h1>
+  <p class="subtitle">Find your product, pick your color &amp; firmware</p>
+  <div class="instruction">&#9733;&nbsp; Tap your product to get started</div>
+</div>
+
+<div class="container" id="products"></div>
+
+<div class="footer">
+  <a href="https://specfive.com" target="_blank">specfive.com</a>&nbsp;&nbsp;·&nbsp;&nbsp;Off-Grid LoRa Radios
+</div>
+
+<script>
+const COLORS = [
+  { key: 'standard',   label: 'Standard',      swatch: 'swatch-standard'   },
+  { key: 'black',      label: 'Black',          swatch: 'swatch-black'      },
+  { key: 'white',      label: 'White',          swatch: 'swatch-white'      },
+  { key: 'spec5green', label: 'Spec5 Green',    swatch: 'swatch-spec5green' },
+  { key: 'tacgreen',   label: 'Tactical Green', swatch: 'swatch-tacgreen'   },
+  { key: 'desert',     label: 'Desert Sand',    swatch: 'swatch-desert'     },
+];
+
+const VARIANTS = [
+  { key: 'mesh',     label: 'Meshtastic', dotClass: 'dot-mesh',     labelClass: 'label-mesh'     },
+  { key: 'atak',     label: 'ATAK',       dotClass: 'dot-atak',     labelClass: 'label-atak'     },
+  { key: 'meshcore', label: 'MeshCore',   dotClass: 'dot-meshcore', labelClass: 'label-meshcore' },
+];
+
+const PRODUCTS = [
+  'Handheld Node Pro',
+  'Base Station Kit',
+  'Pocket Relay V2',
+  'Solar Mesh Node',
+  'Wearable Tracker',
+  'Fixed Mount Node',
+  'Vehicle Relay Kit',
+  'Repeater Unit',
+  'Long Range Node',
+  'Compact EDC Radio',
+  'Gateway Bridge',
+  'Field Comms Pack',
+];
+
+function buildPage() {
+  const container = document.getElementById('products');
+
+  PRODUCTS.forEach((name, pi) => {
+    const block = document.createElement('div');
+    block.className = 'product-block';
+
+    // Header
+    const header = document.createElement('div');
+    header.className = 'product-header';
+    header.innerHTML = `
+      <div class="product-num">${pi + 1}</div>
+      <div class="product-header-text">
+        <div class="product-name">${name}</div>
+        <div class="product-hint">Tap to select firmware &amp; color</div>
+      </div>
+      <div class="chevron">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </div>
+    `;
+
+    header.addEventListener('click', () => {
+      const isOpen = block.classList.contains('open');
+      // Close all others
+      document.querySelectorAll('.product-block.open').forEach(b => b.classList.remove('open'));
+      // Toggle this one
+      if (!isOpen) {
+        block.classList.add('open');
+        block.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    });
+
+    block.appendChild(header);
+
+    // Body
+    const body = document.createElement('div');
+    body.className = 'product-body';
+
+    VARIANTS.forEach(variant => {
+      const section = document.createElement('div');
+      section.className = 'variant-section';
+
+      const typeLabel = document.createElement('div');
+      typeLabel.className = 'variant-type-label';
+      typeLabel.innerHTML = `<span class="type-dot ${variant.dotClass}"></span><span class="${variant.labelClass}">${variant.label}</span>`;
+      section.appendChild(typeLabel);
+
+      const grid = document.createElement('div');
+      grid.className = 'color-grid';
+
+      COLORS.forEach(color => {
+        const a = document.createElement('a');
+        a.className = 'color-btn';
+        a.href = `https://amazon.com/review/placeholder-${pi+1}-${variant.key}-${color.key}`;
+        a.target = '_blank';
+        a.innerHTML = `
+          <div class="color-swatch ${color.swatch}"></div>
+          <div class="color-label">${color.label}</div>
+          <div class="review-tag">Review &#8599;</div>
+        `;
+        grid.appendChild(a);
+      });
+
+      section.appendChild(grid);
+      body.appendChild(section);
+    });
+
+    block.appendChild(body);
+    container.appendChild(block);
+  });
+}
+
+buildPage();
+</script>
+</body>
+</html>
