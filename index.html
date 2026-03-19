@@ -22,13 +22,9 @@
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  /* ── CUSTOM SCROLLBAR ── */
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--surface); }
-  ::-webkit-scrollbar-thumb {
-    background: var(--accent-border);
-    border-radius: 0;
-  }
+  ::-webkit-scrollbar-thumb { background: var(--accent-border); border-radius: 0; }
   ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
   * { scrollbar-width: thin; scrollbar-color: #1D9E7540 #F3F4EE; }
 
@@ -40,445 +36,181 @@
     padding-bottom: 80px;
   }
 
-  /* ── HERO ── */
   .hero {
     padding: 72px 32px 56px;
     border-bottom: 1px solid var(--border);
     text-align: center;
   }
+  .hero-inner { max-width: 640px; margin: 0 auto; }
+  .eyebrow { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 16px; }
+  .eyebrow-dot { width: 5px; height: 5px; border-radius: 0; background: var(--accent); flex-shrink: 0; }
+  .eyebrow-text { font-size: 15px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+  h1 { font-size: clamp(36px, 5vw, 58px); font-weight: 600; color: var(--text-primary); line-height: 1.1; margin: 0 0 16px; letter-spacing: -0.01em; }
+  .subhead { font-size: 19px; color: var(--text-secondary); line-height: 1.7; max-width: 480px; margin: 0 auto; }
 
-  .hero-inner {
-    max-width: 640px;
-    margin: 0 auto;
-  }
+  .container { max-width: 960px; margin: 0 auto; padding: 48px 32px 0; display: flex; flex-direction: column; gap: 48px; }
 
-  .eyebrow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 16px;
-  }
+  /* Family groups */
+  .family-group { display: flex; flex-direction: column; gap: 0; }
+  .family-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .family-label { font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
+  .family-line { flex: 1; height: 1px; background: var(--border); }
+  .family-products { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); }
+  .family-products .product-block { border: none; border-bottom: 1px solid var(--border); }
+  .family-products .product-block:last-child { border-bottom: none; }
 
-  .eyebrow-dot {
-    width: 5px; height: 5px;
-    border-radius: 0;
-    background: var(--accent);
-    flex-shrink: 0;
-  }
-
-  .eyebrow-text {
-    font-size: 15px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 500;
-  }
-
-  h1 {
-    font-size: clamp(36px, 5vw, 58px);
-    font-weight: 600;
-    color: var(--text-primary);
-    line-height: 1.1;
-    margin: 0 0 16px;
-    letter-spacing: -0.01em;
-  }
-
-  .subhead {
-    font-size: 19px;
-    color: var(--text-secondary);
-    line-height: 1.7;
-    max-width: 480px;
-    margin: 0 auto;
-  }
-
-  /* ── CONTAINER ── */
-  .container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 48px 32px 0;
-    display: flex;
-    flex-direction: column;
-    gap: 48px;
-  }
-
-  /* ── FAMILY GROUP ── */
-  .family-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .family-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
-  }
-
-  .family-label {
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-
-  .family-line {
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-
-  .family-products {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    border: 1px solid var(--border);
-  }
-
-  /* products inside a family share one outer border */
-  .family-products .product-block {
-    border: none;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .family-products .product-block:last-child {
-    border-bottom: none;
-  }
-
-  /* standalone products keep their own border */
-  .product-block {
-    border: 1px solid var(--border);
-    overflow: hidden;
-  }
-
-  /* ── PRODUCT HEADER ── */
+  /* Product block */
+  .product-block { border: 1px solid var(--border); overflow: hidden; }
   .product-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 20px 24px;
-    background: #ffffff;
-    cursor: pointer;
-    user-select: none;
-    border-bottom: 1px solid transparent;
-    transition: background 0.15s;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 20px 24px; background: #ffffff; cursor: pointer; user-select: none;
+    border-bottom: 1px solid transparent; transition: background 0.15s;
   }
-
   .product-header:hover { background: var(--surface); }
-
-  .product-block.open .product-header {
-    border-bottom-color: var(--border);
-    background: var(--surface);
-  }
-
-  .product-header-left {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-
+  .product-block.open .product-header { border-bottom-color: var(--border); background: var(--surface); }
+  .product-header-left { display: flex; align-items: center; gap: 14px; }
   .product-num {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--accent);
-    background: var(--accent-dim);
-    border: 1px solid var(--accent-border);
-    min-width: 28px;
-    height: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    border-radius: 0;
-    letter-spacing: 0.03em;
+    font-size: 13px; font-weight: 500; color: var(--accent);
+    background: var(--accent-dim); border: 1px solid var(--accent-border);
+    min-width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; border-radius: 0; letter-spacing: 0.03em;
   }
-
-  .product-name {
-    font-size: 22px;
-    font-weight: 600;
-    color: var(--text-primary);
-    line-height: 1.2;
-  }
-
-  .product-hint {
-    font-size: 15px;
-    color: var(--text-muted);
-    margin-top: 2px;
-    font-weight: 400;
-  }
-
+  .product-name { font-size: 22px; font-weight: 600; color: var(--text-primary); line-height: 1.2; }
+  .product-hint { font-size: 15px; color: var(--text-muted); margin-top: 2px; font-weight: 400; }
   .product-block.open .product-hint { display: none; }
 
   .chevron-wrap {
-    width: 22px; height: 22px;
-    border: 1px solid var(--accent-border);
-    background: var(--accent-dim);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    transition: transform 0.25s ease, background 0.2s, border-color 0.2s;
-    border-radius: 0;
+    width: 22px; height: 22px; border: 1px solid var(--accent-border); background: var(--accent-dim);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    transition: transform 0.25s ease, background 0.2s, border-color 0.2s; border-radius: 0;
   }
-
-  .product-block.open .chevron-wrap {
-    transform: rotate(45deg);
-    background: var(--accent);
-    border-color: var(--accent);
-  }
-
+  .product-block.open .chevron-wrap { transform: rotate(45deg); background: var(--accent); border-color: var(--accent); }
   .chevron-wrap svg path { transition: stroke 0.2s; }
   .product-block.open .chevron-wrap svg path { stroke: #ffffff; }
 
-  /* ── COLLAPSIBLE BODY ── */
   .product-body { display: none; }
   .product-block.open .product-body { display: block; }
 
-  /* ── VARIANT SECTION ── */
-  .variant-section {
-    padding: 24px 24px 20px;
-    border-bottom: 1px solid var(--border);
-    background: #ffffff;
-  }
+  /* Variant sections */
+  .variant-section { padding: 24px 24px 20px; border-bottom: 1px solid var(--border); background: #ffffff; }
   .variant-section:last-child { border-bottom: none; }
-
-  .variant-label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 16px;
-  }
-
-  .variant-dot {
-    width: 5px; height: 5px;
-    border-radius: 0;
-    flex-shrink: 0;
-  }
-  .dot-mesh     { background: #1D9E75; }
-  .dot-atak     { background: #2d6ab4; }
+  .variant-label { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+  .variant-dot { width: 5px; height: 5px; border-radius: 0; flex-shrink: 0; }
+  .dot-mesh { background: #1D9E75; }
+  .dot-atak { background: #2d6ab4; }
   .dot-meshcore { background: #9a6520; }
-
-  .variant-label-text {
-    font-size: 14px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-  .label-mesh     { color: #1D9E75; }
-  .label-atak     { color: #2d6ab4; }
+  .variant-label-text { font-size: 14px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; }
+  .label-mesh { color: #1D9E75; }
+  .label-atak { color: #2d6ab4; }
   .label-meshcore { color: #9a6520; }
 
-  /* ── COLOR GRID ── */
+  /* Standard color grid (used for most products) */
   .color-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(var(--cols, 6), 1fr);
     gap: 0;
     border: 1px solid var(--border);
   }
-
   .color-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 20px 8px;
-    text-decoration: none;
-    border-right: 1px solid var(--border);
-    background: #ffffff;
-    transition: background 0.15s;
-    cursor: pointer;
-    min-height: 110px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 10px; padding: 20px 8px; text-decoration: none;
+    border-right: 1px solid var(--border); background: #ffffff;
+    transition: background 0.15s; cursor: pointer; min-height: 110px;
   }
-
   .color-btn:last-child { border-right: none; }
   .color-btn:hover { background: var(--surface); }
   .color-btn:active { background: #eaebe4; }
+  .color-swatch { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--border); flex-shrink: 0; }
+  .swatch-standard  { background: #4A4A4A; border-color: #8a8880; }
+  .swatch-black     { background: #1A1A1A; border-color: #444; }
+  .swatch-white     { background: #F5F5F5; border-color: #D8DACE; }
+  .swatch-spec5green{ background: #1D9E75; border-color: #0F6E56; }
+  .swatch-tacgreen  { background: #3B5323; border-color: #5a7a40; }
+  .swatch-desert    { background: #C2A06E; border-color: #a87d47; }
+  .swatch-darkgray  { background: #2e2e2e; border-color: #555; }
+  .color-label { font-size: 12px; font-weight: 500; letter-spacing: 0.05em; color: var(--text-secondary); text-align: center; line-height: 1.3; text-transform: uppercase; }
+  .review-cta { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
 
-  .color-swatch {
-    width: 28px; height: 28px;
-    border-radius: 50%;
-    border: 1px solid var(--border);
-    flex-shrink: 0;
+  /* Sub-option table */
+  .suboption-table { border: 1px solid var(--border); width: 100%; }
+  .suboption-row {
+    display: flex; align-items: stretch;
+    border-bottom: 1px solid var(--border);
   }
-
-  .swatch-standard    { background: #4A4A4A; border-color: #8a8880; }
-  .swatch-black       { background: #1A1A1A; border-color: #444; }
-  .swatch-white       { background: #F5F5F5; border-color: #D8DACE; }
-  .swatch-spec5green  { background: #1D9E75; border-color: #0F6E56; }
-  .swatch-tacgreen    { background: #3B5323; border-color: #5a7a40; }
-  .swatch-desert      { background: #C2A06E; border-color: #a87d47; }
-
-  .color-label {
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    color: var(--text-secondary);
-    text-align: center;
-    line-height: 1.3;
-    text-transform: uppercase;
-  }
-
-  .review-cta {
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 500;
-  }
-
-  /* ── DISCOUNT BANNER ── */
-  .discount-banner {
-    max-width: 960px;
-    margin: 48px auto 0;
-    padding: 0 32px;
-  }
-
-  .discount-inner {
-    border: 1px solid var(--border);
+  .suboption-row:last-child { border-bottom: none; }
+  .suboption-label-cell {
+    width: 140px; min-width: 140px; flex-shrink: 0; padding: 14px 16px;
+    border-right: 1px solid var(--border);
+    font-size: 12px; font-weight: 500; letter-spacing: 0.07em;
+    text-transform: uppercase; color: var(--text-muted);
     background: var(--surface);
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    gap: 32px;
-    padding: 32px 36px;
+    display: flex; align-items: center;
+    line-height: 1.3;
   }
-
-  .discount-left {}
-
-  .discount-eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 10px;
+  .suboption-cells { display: flex; flex: 1; }
+  .suboption-cells-inner { display: flex; flex: 1; }
+  .suboption-btn {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 8px; padding: 16px 10px; text-decoration: none;
+    border-right: 1px solid var(--border); background: #ffffff;
+    transition: background 0.15s; cursor: pointer;
+    flex: 1; min-height: 90px;
   }
+  .suboption-btn:last-child { border-right: none; }
+  .suboption-btn:hover { background: var(--surface); }
+  .suboption-btn:active { background: #eaebe4; }
+  .suboption-name { font-size: 12px; font-weight: 500; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; text-align: center; }
+  .suboption-cta { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
 
-  .discount-dot {
-    width: 5px; height: 5px;
-    border-radius: 0;
-    background: var(--accent);
-    flex-shrink: 0;
+  /* Discount banner */
+  .discount-banner { max-width: 960px; margin: 48px auto 0; padding: 0 32px; }
+  .discount-inner {
+    border: 1px solid var(--border); background: var(--surface);
+    display: grid; grid-template-columns: 1fr auto;
+    align-items: center; gap: 32px; padding: 32px 36px;
   }
-
-  .discount-eyebrow-text {
-    font-size: 13px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 500;
-  }
-
-  .discount-heading {
-    font-size: 22px;
-    font-weight: 600;
-    color: var(--text-primary);
-    line-height: 1.25;
-    margin: 0 0 8px;
-  }
-
-  .discount-body {
-    font-size: 16px;
-    color: var(--text-secondary);
-    line-height: 1.7;
-    margin: 0;
-    max-width: 480px;
-  }
-
-  .discount-body strong {
-    color: var(--text-primary);
-    font-weight: 600;
-  }
-
+  .discount-eyebrow { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .discount-dot { width: 5px; height: 5px; border-radius: 0; background: var(--accent); flex-shrink: 0; }
+  .discount-eyebrow-text { font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 500; }
+  .discount-heading { font-size: 22px; font-weight: 600; color: var(--text-primary); line-height: 1.25; margin: 0 0 8px; }
+  .discount-body { font-size: 16px; color: var(--text-secondary); line-height: 1.7; margin: 0; max-width: 480px; }
+  .discount-body strong { color: var(--text-primary); font-weight: 600; }
   .discount-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: var(--accent);
-    color: #ffffff;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    padding: 13px 24px;
-    border: 1px solid var(--accent);
-    white-space: nowrap;
-    transition: background 0.15s, border-color 0.15s;
-    flex-shrink: 0;
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--accent); color: #ffffff; text-decoration: none;
+    font-size: 15px; font-weight: 500; letter-spacing: 0.04em;
+    padding: 13px 24px; border: 1px solid var(--accent);
+    white-space: nowrap; transition: background 0.15s, border-color 0.15s; flex-shrink: 0;
   }
+  .discount-btn:hover { background: #0F6E56; border-color: #0F6E56; }
 
-  .discount-btn:hover {
-    background: #0F6E56;
-    border-color: #0F6E56;
-  }
-
-  .discount-btn-arrow {
-    font-size: 16px;
-    line-height: 1;
-  }
-
-  @media (max-width: 720px) {
-    .discount-banner { padding-left: 20px; padding-right: 20px; }
-    .discount-inner {
-      grid-template-columns: 1fr;
-      gap: 20px;
-      padding: 24px 24px;
-    }
-    .discount-btn { width: 100%; justify-content: center; }
-  }
-
-  /* ── FOOTER ── */
+  /* Footer */
   .page-footer {
-    max-width: 960px;
-    margin: 56px auto 0;
-    padding: 24px 32px 0;
+    max-width: 960px; margin: 56px auto 0; padding: 24px 32px 0;
     border-top: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: flex; align-items: center; justify-content: space-between;
   }
-
-  .footer-brand {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .footer-dot {
-    width: 5px; height: 5px;
-    border-radius: 0;
-    background: var(--accent);
-  }
-
-  .footer-name {
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--text-primary);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-
-  .footer-link {
-    font-size: 15px;
-    color: var(--accent);
-    text-decoration: none;
-    letter-spacing: 0.03em;
-  }
+  .footer-brand { display: flex; align-items: center; gap: 10px; }
+  .footer-dot { width: 5px; height: 5px; border-radius: 0; background: var(--accent); }
+  .footer-name { font-size: 15px; font-weight: 500; color: var(--text-primary); letter-spacing: 0.05em; text-transform: uppercase; }
+  .footer-link { font-size: 15px; color: var(--accent); text-decoration: none; letter-spacing: 0.03em; }
   .footer-link:hover { text-decoration: underline; }
 
-  /* ── RESPONSIVE ── */
+  /* Responsive */
   @media (max-width: 720px) {
-    .color-grid { grid-template-columns: repeat(3, 1fr); }
+    .color-grid { grid-template-columns: repeat(3, 1fr) !important; }
     .color-btn { border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); }
     .color-btn:nth-child(3n) { border-right: none; }
     .color-btn:nth-last-child(-n+3) { border-bottom: none; }
-    .hero, .container, .page-footer { padding-left: 20px; padding-right: 20px; }
+    .hero, .container, .page-footer, .discount-banner { padding-left: 20px; padding-right: 20px; }
     .product-header { padding: 16px 20px; }
     .variant-section { padding: 20px 20px 16px; }
+    .suboption-label-cell { width: 100px; min-width: 100px; font-size: 11px; }
+    .discount-inner { grid-template-columns: 1fr; gap: 20px; padding: 24px; }
+    .discount-btn { width: 100%; justify-content: center; }
   }
-
   @media (max-width: 480px) {
-    .color-grid { grid-template-columns: repeat(2, 1fr); }
+    .color-grid { grid-template-columns: repeat(2, 1fr) !important; }
     .color-btn:nth-child(3n) { border-right: 1px solid var(--border); }
     .color-btn:nth-child(2n) { border-right: none; }
     .color-btn:nth-last-child(-n+3) { border-bottom: 1px solid var(--border); }
@@ -513,7 +245,7 @@
       <p class="discount-body">After leaving your review, send a screenshot to us via our website and we'll send you a <strong>discount code</strong> for your next purchase. Takes less than a minute.</p>
     </div>
     <a class="discount-btn" href="https://specfive.com/pages/contact" target="_blank">
-      Send Screenshot <span class="discount-btn-arrow">↗</span>
+      Send Screenshot <span>↗</span>
     </a>
   </div>
 </div>
@@ -527,73 +259,608 @@
 </footer>
 
 <script>
-const COLORS = [
-  { key: 'standard',   label: 'Standard',      swatch: 'swatch-standard'   },
-  { key: 'black',      label: 'Black',          swatch: 'swatch-black'      },
-  { key: 'white',      label: 'White',          swatch: 'swatch-white'      },
-  { key: 'spec5green', label: 'Spec5 Green',    swatch: 'swatch-spec5green' },
-  { key: 'tacgreen',   label: 'Tactical Green', swatch: 'swatch-tacgreen'   },
-  { key: 'desert',     label: 'Desert Sand',    swatch: 'swatch-desert'     },
-];
+// ── SWATCHES ──────────────────────────────────────────
+const SWATCHES = {
+  standard:   { label: 'Standard',       cls: 'swatch-standard'   },
+  black:      { label: 'Black',          cls: 'swatch-black'      },
+  white:      { label: 'White',          cls: 'swatch-white'      },
+  spec5green: { label: 'Spec5 Green',    cls: 'swatch-spec5green' },
+  tacgreen:   { label: 'Tactical Green', cls: 'swatch-tacgreen'   },
+  desert:     { label: 'Desert Sand',    cls: 'swatch-desert'     },
+  darkgray:   { label: 'Dark Gray',      cls: 'swatch-darkgray'   },
+};
 
-const VARIANTS = [
-  { key: 'mesh',     label: 'Meshtastic', dotClass: 'dot-mesh',     labelClass: 'label-mesh'     },
-  { key: 'atak',     label: 'ATAK',       dotClass: 'dot-atak',     labelClass: 'label-atak'     },
-  { key: 'meshcore', label: 'MeshCore',   dotClass: 'dot-meshcore', labelClass: 'label-meshcore' },
-];
+// ── PRODUCT DATA ──────────────────────────────────────
+// Each product has a `body` builder function for flexibility.
+// type: 'standard' = color grid per variant
+// type: 'suboption' = variant rows with sub-options (e.g. SD card)
+// type: 'custom' = raw HTML
 
-// Groups: family label + array of product names.
-// Single-item groups render without the family header.
 const PRODUCT_GROUPS = [
+  // ── TREKKER SERIES ───────────────────────────────
   {
     family: 'Trekker Series',
-    products: ['Trekker Bravo', 'Trekker Delta'],
+    products: [
+      {
+        name: 'Trekker Bravo',
+        type: 'standard',
+        variants: [
+          { key: 'mesh', label: 'Meshtastic', dot: 'dot-mesh', labelCls: 'label-mesh',
+            colors: [
+              { key: 'black',      url: 'https://www.amazon.com/Trekker-SX1262-Meshtastic-Enabled-Flashed/dp/B0DMNZYCPP/ref=sr_1_34?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-34&xpid=MCrFNPOn4JbQQ&th=1' },
+              { key: 'desert',     url: 'https://www.amazon.com/Trekker-SX1262-Meshtastic-Enabled-Flashed/dp/B0DMNZYCPP/ref=sr_1_34?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-34&xpid=MCrFNPOn4JbQQ&th=1' },
+              { key: 'spec5green', url: 'https://www.amazon.com/Trekker-SX1262-Meshtastic-Enabled-Flashed/dp/B0D1DJ221D/ref=sr_1_34?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-34&xpid=MCrFNPOn4JbQQ&th=1' },
+              { key: 'tacgreen',   url: 'https://www.amazon.com/Trekker-SX1262-Meshtastic-Enabled-Flashed/dp/B0D1DJ221D/ref=sr_1_34?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-34&xpid=MCrFNPOn4JbQQ&th=1' },
+              { key: 'white',      url: 'https://www.amazon.com/Trekker-SX1262-Meshtastic-Enabled-Flashed/dp/B0DMP387QD/ref=sr_1_34?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-34&xpid=MCrFNPOn4JbQQ&th=1' },
+            ] },
+          { key: 'atak', label: 'ATAK', dot: 'dot-atak', labelCls: 'label-atak',
+            colors: [
+              { key: 'tacgreen', url: 'https://www.amazon.com/Enabled-Trekker-SX1262-Meshtastic-Flashed/dp/B0DMKH3QWG/ref=sr_1_12?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-12&th=1' },
+              { key: 'desert',   url: 'https://www.amazon.com/Enabled-Trekker-SX1262-Meshtastic-Flashed/dp/B0DMKGBGN2/ref=sr_1_12?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-12&th=1' },
+              { key: 'white',    url: 'https://www.amazon.com/Enabled-Trekker-SX1262-Meshtastic-Flashed/dp/B0DMKGBGN2/ref=sr_1_12?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-12&th=1' },
+            ] },
+          { key: 'meshcore', label: 'MeshCore', dot: 'dot-meshcore', labelCls: 'label-meshcore',
+            colors: [ { key: 'standard', url: '#placeholder' } ] },
+        ]
+      },
+      {
+        name: 'Trekker Delta',
+        type: 'standard',
+        variants: [
+          { key: 'mesh', label: 'Meshtastic', dot: 'dot-mesh', labelCls: 'label-mesh',
+            colors: [
+              { key: 'black',      url: 'https://www.amazon.com/SpecFive-Trekker-Delta-Meshtastic-Communicator/dp/B0F3QHG8GK/ref=sr_1_28?dib=eyJ2IjoiMSJ9.MpYzitpVS3GjuAV4-KFJ39lFCo3GRTqsD4lQIYRxFV9F_zTdrpKyipjCGneX7kQ0SUZpfZKplkW_CK9TBI4JiYHt5x_Msv_Wf5EUQDp_cVEolyHthDn157Az9C8LRhkJGg85spmDyO5SflZjL06UN32MRMFsMeIJiZPErO5iDYxc4vjZY-ZdXK922tuTSEVNaUktQzjZopC7hAS_k1bt1g.QOtznJydISWoCfFo6Kkw7NIbLe7LNvJ7JYyVBuvJ9HQ&dib_tag=se&keywords=spec5&qid=1773950358&sr=8-28&xpid=MCrFNPOn4JbQQ&th=1' },
+              { key: 'desert',     url: 'https://www.amazon.com/SpecFive-Trekker-Delta-Meshtastic-Communicator/dp/B0F3QHG8GK/ref=sr_1_28?dib=eyJ2IjoiMSJ9.MpYzitpVS3GjuAV4-KFJ39lFCo3GRTqsD4lQIYRxFV9F_zTdrpKyipjCGneX7kQ0SUZpfZKplkW_CK9TBI4JiYHt5x_Msv_Wf5EUQDp_cVEolyHthDn157Az9C8LRhkJGg85spmDyO5SflZjL06UN32MRMFsMeIJiZPErO5iDYxc4vjZY-ZdXK922tuTSEVNaUktQzjZopC7hAS_k1bt1g.QOtznJydISWoCfFo6Kkw7NIbLe7LNvJ7JYyVBuvJ9HQ&dib_tag=se&keywords=spec5&qid=1773950358&sr=8-28&xpid=MCrFNPOn4JbQQ&th=1' },
+              { key: 'spec5green', url: 'https://www.amazon.com/SpecFive-Trekker-Delta-Meshtastic-Communicator/dp/B0F3QZLLRF/ref=sr_1_28?dib=eyJ2IjoiMSJ9.MpYzitpVS3GjuAV4-KFJ39lFCo3GRTqsD4lQIYRxFV9F_zTdrpKyipjCGneX7kQ0SUZpfZKplkW_CK9TBI4JiYHt5x_Msv_Wf5EUQDp_cVEolyHthDn157Az9C8LRhkJGg85spmDyO5SflZjL06UN32MRMFsMeIJiZPErO5iDYxc4vjZY-ZdXK922tuTSEVNaUktQzjZopC7hAS_k1bt1g.QOtznJydISWoCfFo6Kkw7NIbLe7LNvJ7JYyVBuvJ9HQ&dib_tag=se&keywords=spec5&qid=1773950358&sr=8-28&xpid=MCrFNPOn4JbQQ&th=1' },
+              { key: 'darkgray',   url: 'https://www.amazon.com/SpecFive-Trekker-Delta-Meshtastic-Communicator/dp/B0F3QNXRJ3/ref=sr_1_28?dib=eyJ2IjoiMSJ9.MpYzitpVS3GjuAV4-KFJ39lFCo3GRTqsD4lQIYRxFV9F_zTdrpKyipjCGneX7kQ0SUZpfZKplkW_CK9TBI4JiYHt5x_Msv_Wf5EUQDp_cVEolyHthDn157Az9C8LRhkJGg85spmDyO5SflZjL06UN32MRMFsMeIJiZPErO5iDYxc4vjZY-ZdXK922tuTSEVNaUktQzjZopC7hAS_k1bt1g.QOtznJydISWoCfFo6Kkw7NIbLe7LNvJ7JYyVBuvJ9HQ&dib_tag=se&keywords=spec5&qid=1773950358&sr=8-28&xpid=MCrFNPOn4JbQQ&th=1' },
+              { key: 'tacgreen',   url: 'https://www.amazon.com/SpecFive-Trekker-Delta-Meshtastic-Communicator/dp/B0F3QTSF2B/ref=sr_1_28?dib=eyJ2IjoiMSJ9.MpYzitpVS3GjuAV4-KFJ39lFCo3GRTqsD4lQIYRxFV9F_zTdrpKyipjCGneX7kQ0SUZpfZKplkW_CK9TBI4JiYHt5x_Msv_Wf5EUQDp_cVEolyHthDn157Az9C8LRhkJGg85spmDyO5SflZjL06UN32MRMFsMeIJiZPErO5iDYxc4vjZY-ZdXK922tuTSEVNaUktQzjZopC7hAS_k1bt1g.QOtznJydISWoCfFo6Kkw7NIbLe7LNvJ7JYyVBuvJ9HQ&dib_tag=se&keywords=spec5&qid=1773950358&sr=8-28&xpid=MCrFNPOn4JbQQ&th=1' },
+            ] },
+          { key: 'atak', label: 'ATAK', dot: 'dot-atak', labelCls: 'label-atak',
+            colors: [
+              { key: 'desert',    url: 'https://www.amazon.com/SpecFive-Trekker-Delta-Meshtastic-Communicator/dp/B0F3XDZ4XN/ref=sr_1_2?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsklRigkn5kypf9PIiQlSkTa5fYsd1Pr5Zu84jlbSh_oHrZHnykoBuKv-S27o2SxAv8yhrGU982E_eK86i4JCvsnXKsAm99Gkmad7UzaySbSSw.xr6uphsajgmSSrh5_AUS1PbZvlJnG3vuwrzvS-s7Bik&dib_tag=se&keywords=spec5&qid=1773948628&sr=8-2&th=1' },
+              { key: 'spec5green', url: 'https://www.amazon.com/SpecFive-Trekker-Delta-Meshtastic-Communicator/dp/B0F3XN7SDL/ref=sr_1_2?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsklRigkn5kypf9PIiQlSkTa5fYsd1Pr5Zu84jlbSh_oHrZHnykoBuKv-S27o2SxAv8yhrGU982E_eK86i4JCvsnXKsAm99Gkmad7UzaySbSSw.xr6uphsajgmSSrh5_AUS1PbZvlJnG3vuwrzvS-s7Bik&dib_tag=se&keywords=spec5&qid=1773948628&sr=8-2&th=1' },
+            ] },
+          { key: 'meshcore', label: 'MeshCore', dot: 'dot-meshcore', labelCls: 'label-meshcore',
+            colors: [ { key: 'standard', url: '#placeholder' } ] },
+        ]
+      },
+    ]
   },
+
+  // ── RANGER SERIES ────────────────────────────────
   {
     family: 'Ranger Series',
-    products: ['Ranger', 'Ranger Magnum'],
+    products: [
+      {
+        name: 'Ranger',
+        type: 'suboption',
+        variants: [
+          {
+            key: 'mesh', label: 'Meshtastic', dot: 'dot-mesh', labelCls: 'label-mesh',
+            suboptions: [
+              {
+                label: 'No SD Card',
+                items: [
+                  { key: 'black',    url: 'https://www.amazon.com/Meshtastic-Touchscreen-Communication-Emergency-Readiness-Black/dp/B0DMPBM88H/ref=sr_1_3?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsklRigkn5kypf9PIiQlSkTa5fYsd1Pr5Zu84jlbSh_oHrZHnykoBuKv-S27o2SxAv8yhrGU982E_eK86i4JCvsnXKsAm99Gkmad7UzaySbSSw.xr6uphsajgmSSrh5_AUS1PbZvlJnG3vuwrzvS-s7Bik&dib_tag=se&keywords=spec5&qid=1773948628&sr=8-3&th=1' },
+                  { key: 'desert',  url: 'https://www.amazon.com/Meshtastic-Touchscreen-Communication-Emergency-Readiness-Black/dp/B0DMPBXS24/ref=sr_1_3?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsklRigkn5kypf9PIiQlSkTa5fYsd1Pr5Zu84jlbSh_oHrZHnykoBuKv-S27o2SxAv8yhrGU982E_eK86i4JCvsnXKsAm99Gkmad7UzaySbSSw.xr6uphsajgmSSrh5_AUS1PbZvlJnG3vuwrzvS-s7Bik&dib_tag=se&keywords=spec5&qid=1773948628&sr=8-3&th=1' },
+                  { key: 'tacgreen',url: 'https://www.amazon.com/Meshtastic-Touchscreen-Communication-Emergency-Readiness-Black/dp/B0D5ZDQZ7T/ref=sr_1_3?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsklRigkn5kypf9PIiQlSkTa5fYsd1Pr5Zu84jlbSh_oHrZHnykoBuKv-S27o2SxAv8yhrGU982E_eK86i4JCvsnXKsAm99Gkmad7UzaySbSSw.xr6uphsajgmSSrh5_AUS1PbZvlJnG3vuwrzvS-s7Bik&dib_tag=se&keywords=spec5&qid=1773948628&sr=8-3&th=1' },
+                ]
+              },
+              {
+                label: 'With SD Card',
+                items: [
+                  { key: 'black',    url: 'https://www.amazon.com/Meshtastic-Touchscreen-Communication-Emergency-Readiness-Black/dp/B0GGBR7Q8C/ref=sr_1_3?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsklRigkn5kypf9PIiQlSkTa5fYsd1Pr5Zu84jlbSh_oHrZHnykoBuKv-S27o2SxAv8yhrGU982E_eK86i4JCvsnXKsAm99Gkmad7UzaySbSSw.xr6uphsajgmSSrh5_AUS1PbZvlJnG3vuwrzvS-s7Bik&dib_tag=se&keywords=spec5&qid=1773948628&sr=8-3&th=1' },
+                  { key: 'desert',  url: 'https://www.amazon.com/Meshtastic-Touchscreen-Communication-Emergency-Readiness-Black/dp/B0GGB3P4NV/ref=sr_1_3?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsklRigkn5kypf9PIiQlSkTa5fYsd1Pr5Zu84jlbSh_oHrZHnykoBuKv-S27o2SxAv8yhrGU982E_eK86i4JCvsnXKsAm99Gkmad7UzaySbSSw.xr6uphsajgmSSrh5_AUS1PbZvlJnG3vuwrzvS-s7Bik&dib_tag=se&keywords=spec5&qid=1773948628&sr=8-3&th=1' },
+                  { key: 'tacgreen',url: 'https://www.amazon.com/Meshtastic-Touchscreen-Communication-Emergency-Readiness-Black/dp/B0GGBKF6CN/ref=sr_1_3?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsklRigkn5kypf9PIiQlSkTa5fYsd1Pr5Zu84jlbSh_oHrZHnykoBuKv-S27o2SxAv8yhrGU982E_eK86i4JCvsnXKsAm99Gkmad7UzaySbSSw.xr6uphsajgmSSrh5_AUS1PbZvlJnG3vuwrzvS-s7Bik&dib_tag=se&keywords=spec5&qid=1773948628&sr=8-3&th=1' },
+                ]
+              },
+            ]
+          },
+          { key: 'atak', label: 'ATAK', dot: 'dot-atak', labelCls: 'label-atak',
+            suboptions: [
+              { label: 'Standard', items: [ { key: 'standard', url: '#placeholder' } ] }
+            ]
+          },
+          { key: 'meshcore', label: 'MeshCore', dot: 'dot-meshcore', labelCls: 'label-meshcore',
+            suboptions: [
+              { label: 'Standard', items: [ { key: 'standard', url: '#placeholder' } ] }
+            ]
+          },
+        ]
+      },
+      {
+        name: 'Ranger Magnum',
+        type: 'suboption',
+        variants: [
+          {
+            key: 'mesh', label: 'Meshtastic', dot: 'dot-mesh', labelCls: 'label-mesh',
+            suboptions: [
+              {
+                label: 'No SD Card',
+                items: [
+                  { key: 'black',    url: '#placeholder' },
+                  { key: 'tacgreen', url: '#placeholder' },
+                ]
+              },
+              {
+                label: 'With SD Card',
+                items: [
+                  { key: 'black',    url: 'https://www.amazon.com/Spec5-Ranger-Magnum-Communication-Device/dp/B0GGRFBDQD/ref=sr_1_21?dib=eyJ2IjoiMSJ9.gNTBbg9mwH5S-OJ43lDROTb_f6Z_GZskEKSNb5YPdaU.So9knWpq_qVP9KdOKUgGne-9TSLd1v3UCciO7A9gmYc&dib_tag=se&keywords=spec5&qid=1773950073&sr=8-21&xpid=MCrFNPOn4JbQQ&th=1' },
+                  { key: 'tacgreen', url: 'https://www.amazon.com/Spec5-Ranger-Magnum-Communication-Device/dp/B0GGRBM27C/ref=sr_1_21?dib=eyJ2IjoiMSJ9.gNTBbg9mwH5S-OJ43lDROTb_f6Z_GZskEKSNb5YPdaU.So9knWpq_qVP9KdOKUgGne-9TSLd1v3UCciO7A9gmYc&dib_tag=se&keywords=spec5&qid=1773950073&sr=8-21&xpid=MCrFNPOn4JbQQ&th=1' },
+                ]
+              },
+            ]
+          },
+          { key: 'atak', label: 'ATAK', dot: 'dot-atak', labelCls: 'label-atak',
+            suboptions: [
+              {
+                label: 'No SD Card',
+                items: [
+                  { key: 'black',    url: 'https://www.amazon.com/Enabled-Ranger-Magnum-Communication-Device/dp/B0DTV18NPZ/ref=sr_1_37?dib=eyJ2IjoiMSJ9.JgcY6x0HGEYeT209yB27hIPKRP4hX5L4CicNW1lAnhoy-uifPtRF-4sLX66TdD3SMdUQMzrniK-iBG28QlIosodM_MAyGBihZQXBHKXJroaulhmHv3bpeVdJ2pbUCGW6vtkc4U6f274Zxc1y-E1RwUOnCOiOaUUJBEiuPyNQrf4N2LXFkKu36wn0Co2fdv-qdAI53yHSAPuKHs2PlSUeKgiBQp3VT8LFw0pdqIvmL18.M8JTrbkTVkJkuDjwFsRah9249a2U0D-iyn_m0OSFkcw&dib_tag=se&keywords=spec5&qid=1773951207&sr=8-37&xpid=MCrFNPOn4JbQQ&th=1' },
+                  { key: 'tacgreen', url: 'https://www.amazon.com/Enabled-Ranger-Magnum-Communication-Device/dp/B0DTV18NPZ/ref=sr_1_37?dib=eyJ2IjoiMSJ9.JgcY6x0HGEYeT209yB27hIPKRP4hX5L4CicNW1lAnhoy-uifPtRF-4sLX66TdD3SMdUQMzrniK-iBG28QlIosodM_MAyGBihZQXBHKXJroaulhmHv3bpeVdJ2pbUCGW6vtkc4U6f274Zxc1y-E1RwUOnCOiOaUUJBEiuPyNQrf4N2LXFkKu36wn0Co2fdv-qdAI53yHSAPuKHs2PlSUeKgiBQp3VT8LFw0pdqIvmL18.M8JTrbkTVkJkuDjwFsRah9249a2U0D-iyn_m0OSFkcw&dib_tag=se&keywords=spec5&qid=1773951207&sr=8-37&xpid=MCrFNPOn4JbQQ&th=1' },
+                ]
+              },
+              {
+                label: 'With SD Card',
+                items: [
+                  { key: 'black',    url: 'https://www.amazon.com/Enabled-Ranger-Magnum-Communication-Device/dp/B0DTV18NPZ/ref=sr_1_37?dib=eyJ2IjoiMSJ9.JgcY6x0HGEYeT209yB27hIPKRP4hX5L4CicNW1lAnhoy-uifPtRF-4sLX66TdD3SMdUQMzrniK-iBG28QlIosodM_MAyGBihZQXBHKXJroaulhmHv3bpeVdJ2pbUCGW6vtkc4U6f274Zxc1y-E1RwUOnCOiOaUUJBEiuPyNQrf4N2LXFkKu36wn0Co2fdv-qdAI53yHSAPuKHs2PlSUeKgiBQp3VT8LFw0pdqIvmL18.M8JTrbkTVkJkuDjwFsRah9249a2U0D-iyn_m0OSFkcw&dib_tag=se&keywords=spec5&qid=1773951207&sr=8-37&xpid=MCrFNPOn4JbQQ&th=1' },
+                  { key: 'tacgreen', url: 'https://www.amazon.com/Enabled-Ranger-Magnum-Communication-Device/dp/B0GGRQK176/ref=sr_1_37?dib=eyJ2IjoiMSJ9.JgcY6x0HGEYeT209yB27hIPKRP4hX5L4CicNW1lAnhoy-uifPtRF-4sLX66TdD3SMdUQMzrniK-iBG28QlIosodM_MAyGBihZQXBHKXJroaulhmHv3bpeVdJ2pbUCGW6vtkc4U6f274Zxc1y-E1RwUOnCOiOaUUJBEiuPyNQrf4N2LXFkKu36wn0Co2fdv-qdAI53yHSAPuKHs2PlSUeKgiBQp3VT8LFw0pdqIvmL18.M8JTrbkTVkJkuDjwFsRah9249a2U0D-iyn_m0OSFkcw&dib_tag=se&keywords=spec5&qid=1773951207&sr=8-37&xpid=MCrFNPOn4JbQQ&th=1' },
+                ]
+              },
+            ] },
+          { key: 'meshcore', label: 'MeshCore', dot: 'dot-meshcore', labelCls: 'label-meshcore',
+            suboptions: [ { label: 'Standard', items: [ { key: 'standard', url: '#placeholder' } ] } ] },
+        ]
+      },
+    ]
   },
+
+  // ── SPECTRE SERIES ───────────────────────────────
   {
     family: 'Spectre Series',
-    products: ['Spectre', 'Spectre Pro'],
+    products: [
+      {
+        name: 'Spectre',
+        type: 'standard',
+        variants: [
+          { key: 'mesh', label: 'Meshtastic', dot: 'dot-mesh', labelCls: 'label-mesh',
+            colors: [
+              { key: 'darkgray',  url: 'https://www.amazon.com/spec5-Spectre-Android-Off-Grid-Meshtastic-Hotspot/dp/B0DN1LCS52/ref=sr_1_13?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-13&th=1' },
+              { key: 'desert',    url: 'https://www.amazon.com/spec5-Spectre-Android-Off-Grid-Meshtastic-Hotspot/dp/B0DN1LCS52/ref=sr_1_13?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-13&th=1' },
+              { key: 'tacgreen',  url: 'https://www.amazon.com/spec5-Spectre-Android-Off-Grid-Meshtastic-Hotspot/dp/B0DN1LCS52/ref=sr_1_13?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-13&th=1' },
+            ] },
+          { key: 'atak', label: 'ATAK', dot: 'dot-atak', labelCls: 'label-atak',
+            colors: [ { key: 'standard', url: '#placeholder' } ] },
+          { key: 'meshcore', label: 'MeshCore', dot: 'dot-meshcore', labelCls: 'label-meshcore',
+            colors: [ { key: 'standard', url: '#placeholder' } ] },
+        ]
+      },
+      {
+        name: 'Spectre Pro',
+        type: 'suboption',
+        variants: [
+          {
+            key: 'mesh', label: 'Meshtastic', dot: 'dot-mesh', labelCls: 'label-mesh',
+            suboptions: [
+              {
+                label: 'Basic',
+                items: [
+                  { key: 'darkgray', url: 'https://www.amazon.com/spec5-Off-Grid-Communication-Meshtastic-Carbon-Fiber-Reinforced/dp/B0FY63LX32/ref=sr_1_4?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948898&sr=8-4&th=1' },
+                ]
+              },
+              {
+                label: 'Hybrid',
+                items: [
+                  { key: 'darkgray', url: 'https://www.amazon.com/spec5-Off-Grid-Communication-Meshtastic-Carbon-Fiber-Reinforced/dp/B0FY67S7R1/ref=sr_1_4?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948898&sr=8-4&th=1' },
+                ]
+              },
+            ]
+          },
+          { key: 'atak', label: 'ATAK', dot: 'dot-atak', labelCls: 'label-atak',
+            suboptions: [ { label: 'Standard', items: [ { key: 'standard', url: '#placeholder' } ] } ]
+          },
+          { key: 'meshcore', label: 'MeshCore', dot: 'dot-meshcore', labelCls: 'label-meshcore',
+            suboptions: [ { label: 'Standard', items: [ { key: 'standard', url: '#placeholder' } ] } ]
+          },
+        ]
+      },
+    ]
   },
+
+  // ── STANDALONE PRODUCTS ──────────────────────────
   {
     family: null,
-    products: ['Base Station Kit'],
+    products: [
+      {
+        name: 'Relay',
+        type: 'standard',
+        variants: [
+          { key: 'mesh', label: 'Meshtastic', dot: 'dot-mesh', labelCls: 'label-mesh',
+            colors: [ { key: 'standard', url: 'https://www.amazon.com/Solar-Powered-Meshtastic-Long-Range-Communication-Off-Grid/dp/B0DNF89PF2/ref=sr_1_1?dib=eyJ2IjoiMSJ9.5h1BgtD4QsAR06oFdr1Hg342xlptefLkOoNUPP-m1juEmeZsegaEcr_wftNMR9Lz1gnk8wjqKdq3bUY1mOk16aajl-gvhK_YepGcueN79R3iuUPYpRuUEgkWplEBzOH4I9B_UL7Ro2e5hTC1N2UR1HtWy0oU89DKg0YdyRmLs3ok9czA1_B2iE3ofUe5sICfnyIdPUKr5BJ_huQl8q5iC_9hI3m_jgWZQg2TfqUUO-c.gK4Yj_mQ1_HOkVU9_cVFjElWLtDWKsj4KskXSTg1Owk&dib_tag=se&keywords=spec5&qid=1773939933&sr=8-1&th=1' } ] },
+          { key: 'atak', label: 'ATAK', dot: 'dot-atak', labelCls: 'label-atak',
+            colors: [ { key: 'standard', url: 'https://www.amazon.com/Solar-Powered-Meshtastic-Long-Range-Communication-Off-Grid/dp/B0DNF8P3J6/ref=sr_1_1?dib=eyJ2IjoiMSJ9.5h1BgtD4QsAR06oFdr1Hg342xlptefLkOoNUPP-m1juEmeZsegaEcr_wftNMR9Lz1gnk8wjqKdq3bUY1mOk16aajl-gvhK_YepGcueN79R3iuUPYpRuUEgkWplEBzOH4I9B_UL7Ro2e5hTC1N2UR1HtWy0oU89DKg0YdyRmLs3ok9czA1_B2iE3ofUe5sICfnyIdPUKr5BJ_huQl8q5iC_9hI3m_jgWZQg2TfqUUO-c.gK4Yj_mQ1_HOkVU9_cVFjElWLtDWKsj4KskXSTg1Owk&dib_tag=se&keywords=spec5&qid=1773939933&sr=8-1&th=1' } ] },
+          { key: 'meshcore', label: 'MeshCore', dot: 'dot-meshcore', labelCls: 'label-meshcore',
+            colors: [ { key: 'standard', url: 'https://www.amazon.com/Solar-Powered-Meshtastic-Long-Range-Communication-Off-Grid/dp/B0GQTGC6M7/ref=sr_1_1?dib=eyJ2IjoiMSJ9.5h1BgtD4QsAR06oFdr1Hg342xlptefLkOoNUPP-m1juEmeZsegaEcr_wftNMR9Lz1gnk8wjqKdq3bUY1mOk16aajl-gvhK_YepGcueN79R3iuUPYpRuUEgkWplEBzOH4I9B_UL7Ro2e5hTC1N2UR1HtWy0oU89DKg0YdyRmLs3ok9czA1_B2iE3ofUe5sICfnyIdPUKr5BJ_huQl8q5iC_9hI3m_jgWZQg2TfqUUO-c.gK4Yj_mQ1_HOkVU9_cVFjElWLtDWKsj4KskXSTg1Owk&dib_tag=se&keywords=spec5&qid=1773939933&sr=8-1&th=1' } ] },
+        ]
+      },
+    ]
   },
+
+  // ── PULSE PACK ───────────────────────────────────
   {
     family: null,
-    products: ['Solar Mesh Node'],
+    products: [
+      {
+        name: 'Pulse Pack',
+        type: 'standard',
+        variants: [
+          { key: 'mesh', label: 'Meshtastic', dot: 'dot-mesh', labelCls: 'label-mesh',
+            colors: [ { key: 'standard', url: 'https://www.amazon.com/ATAK-Enabled-SpecFive-Pulse-Pack/dp/B0DSG5YSV9/ref=sr_1_7?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-7&th=1' } ] },
+          { key: 'atak', label: 'ATAK', dot: 'dot-atak', labelCls: 'label-atak',
+            colors: [ { key: 'standard', url: 'https://www.amazon.com/ATAK-Enabled-SpecFive-Pulse-Pack/dp/B0DSG3K6WB/ref=sr_1_7?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-7&th=1' } ] },
+          { key: 'meshcore', label: 'MeshCore', dot: 'dot-meshcore', labelCls: 'label-meshcore',
+            colors: [ { key: 'standard', url: 'https://www.amazon.com/ATAK-Enabled-SpecFive-Pulse-Pack/dp/B0GQ8QTV7B/ref=sr_1_7?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-7&th=1' } ] },
+        ]
+      },
+    ]
   },
+
+  // ── NOMAD 2 ──────────────────────────────────────
+  // 3-dimension: RAM (4GB/8GB) × Tier (Base/Ready/Recon) × Color (Gray/Desert/TacGreen)
+  // Rendered as suboption rows = "RAM-Tier", columns = colors
   {
     family: null,
-    products: ['Vehicle Relay Kit'],
+    products: [
+      {
+        name: 'Nomad 2',
+        type: 'suboption',
+        variants: [
+          {
+            key: 'nomad', label: 'All Configs', dot: 'dot-mesh', labelCls: 'label-mesh',
+            suboptions: [
+              {
+                label: '4GB — Base',
+                items: [
+                  { key: 'darkgray', url: 'https://www.amazon.com/SpecFive-Workstation-Raspberry-Touchscreen-MQTT-Enabled/dp/B0FMYK482P/ref=sr_1_8?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-8&th=1' },
+                  { key: 'desert',   url: 'https://www.amazon.com/SpecFive-Workstation-Raspberry-Touchscreen-MQTT-Enabled/dp/B0FMYHLX3K/ref=sr_1_8?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-8&th=1' },
+                  { key: 'tacgreen', url: 'https://www.amazon.com/SpecFive-Workstation-Raspberry-Touchscreen-MQTT-Enabled/dp/B0FMYKVY5Q/ref=sr_1_8?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-8&th=1' },
+                ]
+              },
+              {
+                label: '4GB — Ready',
+                items: [
+                  { key: 'darkgray', url: 'https://www.amazon.com/SpecFive-Workstation-Raspberry-Touchscreen-MQTT-Enabled/dp/B0FMYKLKB2/ref=sr_1_8?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-8&th=1' },
+                  { key: 'desert',   url: 'https://www.amazon.com/SpecFive-Workstation-Raspberry-Touchscreen-MQTT-Enabled/dp/B0FMYJW3YG/ref=sr_1_8?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-8&th=1' },
+                  { key: 'tacgreen', url: 'https://www.amazon.com/SpecFive-Workstation-Raspberry-Touchscreen-MQTT-Enabled/dp/B0FMYK8PDK/ref=sr_1_8?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-8&th=1' },
+                ]
+              },
+              {
+                label: '4GB — Recon',
+                items: [
+                  { key: 'darkgray', url: 'https://www.amazon.com/SpecFive-Workstation-Raspberry-Touchscreen-MQTT-Enabled/dp/B0FMYGZMSG/ref=sr_1_8?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-8&th=1' },
+                  { key: 'desert',   url: 'https://www.amazon.com/SpecFive-Workstation-Raspberry-Touchscreen-MQTT-Enabled/dp/B0FMYHT9DM/ref=sr_1_8?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-8&th=1' },
+                  { key: 'tacgreen', url: 'https://www.amazon.com/SpecFive-Workstation-Raspberry-Touchscreen-MQTT-Enabled/dp/B0FMYHK2X3/ref=sr_1_8?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-8&th=1' },
+                ]
+              },
+              {
+                label: '8GB — Base',
+                items: [
+                  { key: 'darkgray', url: 'https://www.amazon.com/SpecFive-Workstation-Raspberry-Touchscreen-MQTT-Enabled/dp/B0FMYMLWDT/ref=sr_1_8?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-8&th=1' },
+                  { key: 'desert',   url: 'https://www.amazon.com/SpecFive-Workstation-Raspberry-Touchscreen-MQTT-Enabled/dp/B0FMYK8HN6/ref=sr_1_8?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-8&th=1' },
+                  { key: 'tacgreen', url: 'https://www.amazon.com/SpecFive-Workstation-Raspberry-Touchscreen-MQTT-Enabled/dp/B0FMYHK2X3/ref=sr_1_8?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-8&th=1' },
+                ]
+              },
+              {
+                label: '8GB — Ready',
+                items: [
+                  { key: 'darkgray', url: 'https://www.amazon.com/SpecFive-Workstation-Raspberry-Touchscreen-MQTT-Enabled/dp/B0FMYG5D5P/ref=sr_1_8?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-8&th=1' },
+                  { key: 'desert',   url: 'https://www.amazon.com/SpecFive-Workstation-Raspberry-Touchscreen-MQTT-Enabled/dp/B0FMYGRPB5/ref=sr_1_8?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-8&th=1' },
+                  { key: 'tacgreen', url: 'https://www.amazon.com/SpecFive-Workstation-Raspberry-Touchscreen-MQTT-Enabled/dp/B0FMYH3CTT/ref=sr_1_8?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-8&th=1' },
+                ]
+              },
+              {
+                label: '8GB — Recon',
+                items: [
+                  { key: 'darkgray', url: 'https://www.amazon.com/SpecFive-Workstation-Raspberry-Touchscreen-MQTT-Enabled/dp/B0FMYKLKB1/ref=sr_1_8?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-8&th=1' },
+                  { key: 'desert',   url: 'https://www.amazon.com/SpecFive-Workstation-Raspberry-Touchscreen-MQTT-Enabled/dp/B0FMYK2S4P/ref=sr_1_8?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-8&th=1' },
+                  { key: 'tacgreen', url: 'https://www.amazon.com/SpecFive-Workstation-Raspberry-Touchscreen-MQTT-Enabled/dp/B0FMYH3CTT/ref=sr_1_8?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-8&th=1' },
+                ]
+              },
+            ]
+          },
+        ]
+      },
+    ]
   },
+
+  // ── COPILOT ──────────────────────────────────────
   {
     family: null,
-    products: ['Repeater Unit'],
+    products: [
+      {
+        name: 'Copilot',
+        type: 'standard',
+        variants: [
+          { key: 'mesh', label: 'Meshtastic', dot: 'dot-mesh', labelCls: 'label-mesh',
+            colors: [
+              { key: 'darkgray', url: 'https://www.amazon.com/spec5-Copilot-Off-Grid-Communicator-Meshtastic/dp/B0CX68VYGZ/ref=sr_1_35?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-35&xpid=MCrFNPOn4JbQQ' },
+            ] },
+          { key: 'atak', label: 'ATAK', dot: 'dot-atak', labelCls: 'label-atak',
+            colors: [
+              { key: 'darkgray', url: 'https://www.amazon.com/Off-Grid-Communicator-Meshtastic-Extender-Spec5/dp/B0D19CZ2VN/ref=sr_1_9?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-9' },
+            ] },
+          { key: 'meshcore', label: 'MeshCore', dot: 'dot-meshcore', labelCls: 'label-meshcore',
+            colors: [ { key: 'standard', url: '#placeholder' } ] },
+        ]
+      },
+    ]
   },
+
+  // ── MESHCLIP ─────────────────────────────────────
   {
     family: null,
-    products: ['Gateway Bridge'],
+    products: [
+      {
+        name: 'MeshClip',
+        type: 'standard',
+        variants: [
+          { key: 'mesh', label: 'Meshtastic', dot: 'dot-mesh', labelCls: 'label-mesh',
+            colors: [ { key: 'standard', url: '#placeholder' } ] },
+          { key: 'atak', label: 'ATAK', dot: 'dot-atak', labelCls: 'label-atak',
+            colors: [
+              { key: 'standard', url: 'https://www.amazon.com/Enabled-MeshClip-Off-Grid-Communicator-Meshtastic/dp/B0D19D5D8H/ref=sr_1_14?dib=eyJ2IjoiMSJ9.uBR9bDfWBRohQm-1WvPjKLVAIseS0tgYi9HwIhvdaTZ_NQPgdVvdm7_SuGOrKZ1DVkvsk0JYNAPfutqc__D0iFRcNm0hKDgBplOr9enrzGwB4g8SmHCXGmK4lI3hqzsksZvm9hFcs8w0BEmrEoRVZUJ_WyhHPlbslsaRhLO987BhNWdmwSfzb8dI9O69BGUhw04z2y4PLuytD67rL7TBod55MF2o6S75NrU6XwHrcgE.RqNxc3ZGGoyK3OfZupSQDskRY7IDMMPZw1RuJnk6YNQ&dib_tag=se&keywords=spec5&qid=1773948979&sr=8-14' },
+            ] },
+          { key: 'meshcore', label: 'MeshCore', dot: 'dot-meshcore', labelCls: 'label-meshcore',
+            colors: [ { key: 'standard', url: '#placeholder' } ] },
+        ]
+      },
+    ]
   },
+
+  // ── VOYAGER SERIES ───────────────────────────────
+  {
+    family: 'Voyager Series',
+    products: [
+      {
+        name: 'Voyager-S',
+        type: 'standard',
+        variants: [
+          { key: 'mesh', label: 'Meshtastic', dot: 'dot-mesh', labelCls: 'label-mesh',
+            colors: [ { key: 'standard', url: 'https://www.amazon.com/Solar-Powered-Meshtastic-Car-Mount-Long-Range-Communicator/dp/B0G64QT1D6/ref=sr_1_20?dib=eyJ2IjoiMSJ9.gNTBbg9mwH5S-OJ43lDRObfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHCys4F4Gq6AVn7Jw8E7g3vivtxiT0t6dInsALzvcCBKVT7RzmNar39xpzmK2Rs8oeUWK1OcW-BJdESzKy0mpnsFVvVo7CTWRFVz443OMZK0l3LZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.wshH-9yO4D8VObtPkTsRLLH6QMzHxO7-zA5kCWuNgGw&dib_tag=se&keywords=spec5&qid=1773950234&sr=8-20&xpid=MCrFNPOn4JbQQ&th=1' } ] },
+          { key: 'atak', label: 'ATAK', dot: 'dot-atak', labelCls: 'label-atak',
+            colors: [ { key: 'standard', url: '#placeholder' } ] },
+          { key: 'meshcore', label: 'MeshCore', dot: 'dot-meshcore', labelCls: 'label-meshcore',
+            colors: [ { key: 'standard', url: 'https://www.amazon.com/Solar-Powered-Meshtastic-Car-Mount-Long-Range-Communicator/dp/B0GS946BX1/ref=sr_1_20?dib=eyJ2IjoiMSJ9.gNTBbg9mwH5S-OJ43lDRObfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHCys4F4Gq6AVn7Jw8E7g3vivtxiT0t6dInsALzvcCBKVT7RzmNar39xpzmK2Rs8oeUWK1OcW-BJdESzKy0mpnsFVvVo7CTWRFVz443OMZK0l3LZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.wshH-9yO4D8VObtPkTsRLLH6QMzHxO7-zA5kCWuNgGw&dib_tag=se&keywords=spec5&qid=1773950234&sr=8-20&xpid=MCrFNPOn4JbQQ&th=1' } ] },
+        ]
+      },
+      {
+        name: 'Voyager-M',
+        type: 'standard',
+        variants: [
+          { key: 'mesh', label: 'Meshtastic', dot: 'dot-mesh', labelCls: 'label-mesh',
+            colors: [ { key: 'standard', url: 'https://www.amazon.com/Solar-Powered-Meshtastic-Car-Mount-Long-Range-Communicator/dp/B0G64QT1D6/ref=sr_1_20?dib=eyJ2IjoiMSJ9.gNTBbg9mwH5S-OJ43lDRObfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHCys4F4Gq6AVn7Jw8E7g3vivtxiT0t6dInsALzvcCBKVT7RzmNar39xpzmK2Rs8oeUWK1OcW-BJdESzKy0mpnsFVvVo7CTWRFVz443OMZK0l3LZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.wshH-9yO4D8VObtPkTsRLLH6QMzHxO7-zA5kCWuNgGw&dib_tag=se&keywords=spec5&qid=1773950234&sr=8-20&xpid=MCrFNPOn4JbQQ&th=1' } ] },
+          { key: 'atak', label: 'ATAK', dot: 'dot-atak', labelCls: 'label-atak',
+            colors: [ { key: 'standard', url: '#placeholder' } ] },
+          { key: 'meshcore', label: 'MeshCore', dot: 'dot-meshcore', labelCls: 'label-meshcore',
+            colors: [ { key: 'standard', url: 'https://www.amazon.com/Solar-Powered-Meshtastic-Car-Mount-Long-Range-Communicator/dp/B0G64QT1D6/ref=sr_1_20?dib=eyJ2IjoiMSJ9.gNTBbg9mwH5S-OJ43lDRObfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHCys4F4Gq6AVn7Jw8E7g3vivtxiT0t6dInsALzvcCBKVT7RzmNar39xpzmK2Rs8oeUWK1OcW-BJdESzKy0mpnsFVvVo7CTWRFVz443OMZK0l3LZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.wshH-9yO4D8VObtPkTsRLLH6QMzHxO7-zA5kCWuNgGw&dib_tag=se&keywords=spec5&qid=1773950234&sr=8-20&xpid=MCrFNPOn4JbQQ&th=1' } ] },
+        ]
+      },
+    ]
+  },
+
+  // ── BEACON SERIES ────────────────────────────────
+  {
+    family: 'Beacon Series',
+    products: [
+      {
+        name: 'Beacon',
+        type: 'standard',
+        variants: [
+          { key: 'mesh', label: 'Meshtastic', dot: 'dot-mesh', labelCls: 'label-mesh',
+            colors: [
+              { key: 'black',      url: 'https://www.amazon.com/Spec5-Charging-Off-Grid-Communicator-Meshtastic/dp/B0D19V1G9R/ref=sr_1_25?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-25&xpid=MCrFNPOn4JbQQ&th=1' },
+              { key: 'desert',     url: 'https://www.amazon.com/Spec5-Charging-Off-Grid-Communicator-Meshtastic/dp/B0D19NKCF7/ref=sr_1_25?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-25&xpid=MCrFNPOn4JbQQ&th=1' },
+              { key: 'white',      url: 'https://www.amazon.com/Spec5-Charging-Off-Grid-Communicator-Meshtastic/dp/B0D19NKCF7/ref=sr_1_25?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-25&xpid=MCrFNPOn4JbQQ&th=1' },
+              { key: 'spec5green', url: 'https://www.amazon.com/Spec5-Charging-Off-Grid-Communicator-Meshtastic/dp/B0D19NKCF7/ref=sr_1_25?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-25&xpid=MCrFNPOn4JbQQ&th=1' },
+              { key: 'tacgreen',   url: 'https://www.amazon.com/Spec5-Charging-Off-Grid-Communicator-Meshtastic/dp/B0D19NKCF7/ref=sr_1_25?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-25&xpid=MCrFNPOn4JbQQ&th=1' },
+            ] },
+          { key: 'atak', label: 'ATAK', dot: 'dot-atak', labelCls: 'label-atak',
+            colors: [ { key: 'standard', url: '#placeholder' } ] },
+          { key: 'meshcore', label: 'MeshCore', dot: 'dot-meshcore', labelCls: 'label-meshcore',
+            colors: [ { key: 'standard', url: '#placeholder' } ] },
+        ]
+      },
+      {
+        name: 'Beacon XL+',
+        type: 'standard',
+        variants: [
+          { key: 'mesh', label: 'Meshtastic', dot: 'dot-mesh', labelCls: 'label-mesh',
+            colors: [ { key: 'standard', url: '#placeholder' } ] },
+          { key: 'atak', label: 'ATAK', dot: 'dot-atak', labelCls: 'label-atak',
+            colors: [
+              { key: 'tacgreen',   url: 'https://www.amazon.com/ATAK-Enabled-Solar-Powered-Efficiency-Communicator-Meshtastic/dp/B0DMT94SDP/ref=sr_1_24?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-24&xpid=MCrFNPOn4JbQQ&th=1' },
+              { key: 'black',      url: 'https://www.amazon.com/ATAK-Enabled-Solar-Powered-Efficiency-Communicator-Meshtastic/dp/B0DMT94SDP/ref=sr_1_24?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-24&xpid=MCrFNPOn4JbQQ&th=1' },
+              { key: 'desert',     url: 'https://www.amazon.com/ATAK-Enabled-Solar-Powered-Efficiency-Communicator-Meshtastic/dp/B0DMT94SDP/ref=sr_1_24?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-24&xpid=MCrFNPOn4JbQQ&th=1' },
+              { key: 'spec5green', url: 'https://www.amazon.com/ATAK-Enabled-Solar-Powered-Efficiency-Communicator-Meshtastic/dp/B0DMT94SDP/ref=sr_1_24?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-24&xpid=MCrFNPOn4JbQQ&th=1' },
+              { key: 'white',      url: 'https://www.amazon.com/ATAK-Enabled-Solar-Powered-Efficiency-Communicator-Meshtastic/dp/B0DMT94SDP/ref=sr_1_24?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-24&xpid=MCrFNPOn4JbQQ&th=1' },
+            ] },
+          { key: 'meshcore', label: 'MeshCore', dot: 'dot-meshcore', labelCls: 'label-meshcore',
+            colors: [ { key: 'standard', url: '#placeholder' } ] },
+        ]
+      },
+    ]
+  },
+
+  // ── TRACE ────────────────────────────────────────
   {
     family: null,
-    products: ['Field Comms Pack'],
+    products: [
+      {
+        name: 'Trace',
+        type: 'standard',
+        variants: [
+          { key: 'mesh', label: 'Meshtastic', dot: 'dot-mesh', labelCls: 'label-mesh',
+            colors: [ { key: 'standard', url: 'https://www.amazon.com/SpecFive-Trace-GPS-Tracker-Subscription-Free/dp/B0DXPMGQ7N/ref=sr_1_26?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-26&xpid=MCrFNPOn4JbQQ' } ] },
+          { key: 'atak', label: 'ATAK', dot: 'dot-atak', labelCls: 'label-atak',
+            colors: [ { key: 'standard', url: '#placeholder' } ] },
+          { key: 'meshcore', label: 'MeshCore', dot: 'dot-meshcore', labelCls: 'label-meshcore',
+            colors: [ { key: 'standard', url: '#placeholder' } ] },
+        ]
+      },
+    ]
+  },
+
+  // ── STRIKE ───────────────────────────────────────
+  {
+    family: null,
+    products: [
+      {
+        name: 'Strike',
+        type: 'suboption',
+        variants: [
+          {
+            key: 'mesh', label: 'Meshtastic', dot: 'dot-mesh', labelCls: 'label-mesh',
+            suboptions: [
+              {
+                label: 'Base',
+                items: [
+                  { key: 'black',      url: 'https://www.amazon.com/spec5-SpecFive-Strike-Ready-Custom-Built/dp/B0FR54SYZD/ref=sr_1_28?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-28&xpid=MCrFNPOn4JbQQ&th=1' },
+                  { key: 'desert',     url: 'https://www.amazon.com/spec5-SpecFive-Strike-Ready-Custom-Built/dp/B0FR54SYZD/ref=sr_1_28?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-28&xpid=MCrFNPOn4JbQQ&th=1' },
+                  { key: 'tacgreen',   url: 'https://www.amazon.com/spec5-SpecFive-Strike-Ready-Custom-Built/dp/B0FR4824J1/ref=sr_1_28?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-28&xpid=MCrFNPOn4JbQQ&th=1' },
+                  { key: 'darkgray',   url: 'https://www.amazon.com/spec5-SpecFive-Strike-Ready-Custom-Built/dp/B0FR484KXZ/ref=sr_1_28?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-28&xpid=MCrFNPOn4JbQQ&th=1' },
+                  { key: 'spec5green', url: 'https://www.amazon.com/spec5-SpecFive-Strike-Ready-Custom-Built/dp/B0FR484KXZ/ref=sr_1_28?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-28&xpid=MCrFNPOn4JbQQ&th=1' },
+                ]
+              },
+              {
+                label: 'Ready',
+                items: [
+                  { key: 'black',      url: 'https://www.amazon.com/spec5-SpecFive-Strike-Ready-Custom-Built/dp/B0FR484NW5/ref=sr_1_28?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-28&xpid=MCrFNPOn4JbQQ&th=1' },
+                  { key: 'desert',     url: 'https://www.amazon.com/spec5-SpecFive-Strike-Ready-Custom-Built/dp/B0FR484NW5/ref=sr_1_28?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-28&xpid=MCrFNPOn4JbQQ&th=1' },
+                  { key: 'tacgreen',   url: 'https://www.amazon.com/spec5-SpecFive-Strike-Ready-Custom-Built/dp/B0FR4ZCBCC/ref=sr_1_28?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-28&xpid=MCrFNPOn4JbQQ&th=1' },
+                  { key: 'darkgray',   url: 'https://www.amazon.com/spec5-SpecFive-Strike-Ready-Custom-Built/dp/B0FR4ZCBCC/ref=sr_1_28?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-28&xpid=MCrFNPOn4JbQQ&th=1' },
+                  { key: 'spec5green', url: 'https://www.amazon.com/spec5-SpecFive-Strike-Ready-Custom-Built/dp/B0FR59D338/ref=sr_1_28?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-28&xpid=MCrFNPOn4JbQQ&th=1' },
+                ]
+              },
+            ]
+          },
+          { key: 'atak', label: 'ATAK', dot: 'dot-atak', labelCls: 'label-atak',
+            suboptions: [ { label: 'Standard', items: [ { key: 'standard', url: '#placeholder' } ] } ] },
+          { key: 'meshcore', label: 'MeshCore', dot: 'dot-meshcore', labelCls: 'label-meshcore',
+            suboptions: [ { label: 'Standard', items: [ { key: 'standard', url: '#placeholder' } ] } ] },
+        ]
+      },
+    ]
+  },
+
+  // ── MINI TREKKER ─────────────────────────────────
+  {
+    family: null,
+    products: [
+      {
+        name: 'Mini Trekker',
+        type: 'standard',
+        variants: [
+          { key: 'mesh', label: 'Meshtastic', dot: 'dot-mesh', labelCls: 'label-mesh',
+            colors: [
+              { key: 'black', url: 'https://www.amazon.com/Spec5-MiniTrekker-Meshtastic-Device-Communicator/dp/B0DLP16MM4/ref=sr_1_29?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-29&xpid=MCrFNPOn4JbQQ' },
+            ] },
+          { key: 'atak', label: 'ATAK', dot: 'dot-atak', labelCls: 'label-atak',
+            colors: [
+              { key: 'black',      url: 'https://www.amazon.com/Spec5-MiniTrekker-LoRa-Off-Grid-Communicator/dp/B0DLL62V7Q/ref=sr_1_30?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-30&xpid=MCrFNPOn4JbQQ&th=1' },
+              { key: 'desert',     url: 'https://www.amazon.com/Spec5-MiniTrekker-LoRa-Off-Grid-Communicator/dp/B0DLL62V7Q/ref=sr_1_30?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-30&xpid=MCrFNPOn4JbQQ&th=1' },
+              { key: 'spec5green', url: 'https://www.amazon.com/Spec5-MiniTrekker-LoRa-Off-Grid-Communicator/dp/B0DLL62V7Q/ref=sr_1_30?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-30&xpid=MCrFNPOn4JbQQ&th=1' },
+              { key: 'tacgreen',   url: 'https://www.amazon.com/Spec5-MiniTrekker-LoRa-Off-Grid-Communicator/dp/B0DLL62V7Q/ref=sr_1_30?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-30&xpid=MCrFNPOn4JbQQ&th=1' },
+              { key: 'white',      url: 'https://www.amazon.com/Spec5-MiniTrekker-LoRa-Off-Grid-Communicator/dp/B0DLL62V7Q/ref=sr_1_30?dib=eyJ2IjoiMSJ9.q1LH2tk3coEltSwGdF-g_rfU7q1jPhZnxxUlGzfYNSQkrxOuZZBFQqZxZPDUO8TEkzNZWAOD0HxertodSgwHC9OuBOaTmGLzV6Le9QFwLHAnUvOqJfh1-4ktaJlgWi3fFbPEigfm-R8SRhAaDPT94H25kEJSNw0WCYmVEPrbwdZD1HpUsrobfCZ_ArKbrcHwLZ4AA717RFmOzKO8QEoTc9tTqEg9XaVnMd2FRRuK8gU.LJFefPKHCcwZ1K-7cve9TqH0jsH-2oOVt8W97LA5OA8&dib_tag=se&keywords=spec5&qid=1773950555&sr=8-30&xpid=MCrFNPOn4JbQQ&th=1' },
+            ] },
+          { key: 'meshcore', label: 'MeshCore', dot: 'dot-meshcore', labelCls: 'label-meshcore',
+            colors: [ { key: 'standard', url: '#placeholder' } ] },
+        ]
+      },
+    ]
   },
 ];
 
+// ── HELPERS ───────────────────────────────────────────
 function pad(n) { return n < 10 ? '0' + n : '' + n; }
-
 let globalIndex = 0;
 
-function buildProductBlock(name) {
+function chevronSVG() {
+  return `<div class="chevron-wrap" aria-hidden="true">
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+      <path d="M5 1v8M1 5h8" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </div>`;
+}
+
+function colorBtn(colorKey, url) {
+  if (!url || url === '#placeholder') return null;
+  const sw = SWATCHES[colorKey] || SWATCHES.standard;
+  return `<a class="color-btn" href="${url}" target="_blank" rel="noopener">
+    <div class="color-swatch ${sw.cls}"></div>
+    <div class="color-label">${sw.label}</div>
+    <div class="review-cta">Review ↗</div>
+  </a>`;
+}
+
+// Standard variant section: color grid — returns null if no live links
+function buildStandardVariantSection(variant) {
+  const liveColors = variant.colors.filter(c => c.url && c.url !== '#placeholder');
+  if (liveColors.length === 0) return null;
+  const cols = Math.min(liveColors.length, 6);
+  let html = `<div class="variant-section">
+    <div class="variant-label">
+      <span class="variant-dot ${variant.dot}"></span>
+      <span class="variant-label-text ${variant.labelCls}">${variant.label}</span>
+    </div>
+    <div class="color-grid" style="--cols:${cols}">`;
+  liveColors.forEach(c => { html += colorBtn(c.key, c.url); });
+  html += `</div></div>`;
+  return html;
+}
+
+// Suboption variant section — returns null if no live links anywhere
+function buildSuboptionVariantSection(variant) {
+  const liveSuboptions = variant.suboptions.map(sub => ({
+    ...sub,
+    items: sub.items.filter(item => item.url && item.url !== '#placeholder')
+  })).filter(sub => sub.items.length > 0);
+
+  if (liveSuboptions.length === 0) return null;
+
+  let html = `<div class="variant-section">
+    <div class="variant-label">
+      <span class="variant-dot ${variant.dot}"></span>
+      <span class="variant-label-text ${variant.labelCls}">${variant.label}</span>
+    </div>
+    <div class="suboption-table">`;
+
+  liveSuboptions.forEach(sub => {
+    html += `<div class="suboption-row">
+      <div class="suboption-label-cell">${sub.label}</div>
+      <div class="suboption-cells"><div class="suboption-cells-inner">`;
+    sub.items.forEach(item => {
+      const sw = SWATCHES[item.key] || SWATCHES.standard;
+      html += `<a class="suboption-btn" href="${item.url}" target="_blank" rel="noopener">
+        <div class="color-swatch ${sw.cls}" style="width:22px;height:22px;"></div>
+        <div class="suboption-name">${sw.label}</div>
+        <div class="suboption-cta">Review ↗</div>
+      </a>`;
+    });
+    html += `</div></div></div>`;
+  });
+
+  html += `</div></div>`;
+  return html;
+}
+
+function buildProductBlock(product) {
   globalIndex++;
   const pi = globalIndex;
 
   const block = document.createElement('div');
   block.className = 'product-block';
 
+  // Header
   const header = document.createElement('div');
   header.className = 'product-header';
   header.setAttribute('role', 'button');
@@ -603,15 +870,11 @@ function buildProductBlock(name) {
     <div class="product-header-left">
       <div class="product-num">${pad(pi)}</div>
       <div>
-        <div class="product-name">${name}</div>
+        <div class="product-name">${product.name}</div>
         <div class="product-hint">Tap to select firmware &amp; color</div>
       </div>
     </div>
-    <div class="chevron-wrap" aria-hidden="true">
-      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-        <path d="M5 1v8M1 5h8" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
-    </div>
+    ${chevronSVG()}
   `;
 
   const toggle = () => {
@@ -631,45 +894,26 @@ function buildProductBlock(name) {
   header.addEventListener('keydown', e => {
     if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
   });
-
   block.appendChild(header);
 
+  // Body
   const body = document.createElement('div');
   body.className = 'product-body';
+  let bodyHTML = '';
 
-  VARIANTS.forEach(variant => {
-    const section = document.createElement('div');
-    section.className = 'variant-section';
-
-    const vLabel = document.createElement('div');
-    vLabel.className = 'variant-label';
-    vLabel.innerHTML = `
-      <span class="variant-dot ${variant.dotClass}"></span>
-      <span class="variant-label-text ${variant.labelClass}">${variant.label}</span>
-    `;
-    section.appendChild(vLabel);
-
-    const grid = document.createElement('div');
-    grid.className = 'color-grid';
-
-    COLORS.forEach(color => {
-      const a = document.createElement('a');
-      a.className = 'color-btn';
-      a.href = `https://amazon.com/review/placeholder-${pi}-${variant.key}-${color.key}`;
-      a.target = '_blank';
-      a.rel = 'noopener';
-      a.innerHTML = `
-        <div class="color-swatch ${color.swatch}"></div>
-        <div class="color-label">${color.label}</div>
-        <div class="review-cta">Review ↗</div>
-      `;
-      grid.appendChild(a);
+  if (product.type === 'standard') {
+    product.variants.forEach(v => {
+      const s = buildStandardVariantSection(v);
+      if (s) bodyHTML += s;
     });
+  } else if (product.type === 'suboption') {
+    product.variants.forEach(v => {
+      const s = buildSuboptionVariantSection(v);
+      if (s) bodyHTML += s;
+    });
+  }
 
-    section.appendChild(grid);
-    body.appendChild(section);
-  });
-
+  body.innerHTML = bodyHTML;
   block.appendChild(body);
   return block;
 }
@@ -678,33 +922,24 @@ function buildPage() {
   const container = document.getElementById('products');
 
   PRODUCT_GROUPS.forEach(group => {
-    if (group.family && group.products.length > 1) {
-      // Family group wrapper
+    const hasFamily = group.family && group.products.length > 1;
+
+    if (hasFamily) {
       const groupEl = document.createElement('div');
       groupEl.className = 'family-group';
 
       const familyHeader = document.createElement('div');
       familyHeader.className = 'family-header';
-      familyHeader.innerHTML = `
-        <span class="family-label">${group.family}</span>
-        <span class="family-line"></span>
-      `;
+      familyHeader.innerHTML = `<span class="family-label">${group.family}</span><span class="family-line"></span>`;
       groupEl.appendChild(familyHeader);
 
       const familyProducts = document.createElement('div');
       familyProducts.className = 'family-products';
-
-      group.products.forEach(name => {
-        familyProducts.appendChild(buildProductBlock(name));
-      });
-
+      group.products.forEach(p => familyProducts.appendChild(buildProductBlock(p)));
       groupEl.appendChild(familyProducts);
       container.appendChild(groupEl);
     } else {
-      // Standalone product
-      group.products.forEach(name => {
-        container.appendChild(buildProductBlock(name));
-      });
+      group.products.forEach(p => container.appendChild(buildProductBlock(p)));
     }
   });
 }
