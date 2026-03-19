@@ -4,277 +4,412 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SpecFive — Leave a Review</title>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600;700;800&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --green: #00FF88;
-    --bg: #0D0D0D;
-    --surface: #181818;
-    --surface2: #222222;
-    --border: #2E2E2E;
-    --text: #FFFFFF;
-    --muted: #999999;
+    --accent: #1D9E75;
+    --accent-dim: #1D9E751a;
+    --accent-border: #1D9E7540;
+    --text-primary: #1a1a18;
+    --text-secondary: #6b7068;
+    --text-muted: #8a8880;
+    --border: #D8DACE;
+    --bg: #ffffff;
+    --surface: #F3F4EE;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
+  /* ── CUSTOM SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--surface); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--accent-border);
+    border-radius: 0;
+  }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+  * { scrollbar-width: thin; scrollbar-color: #1D9E7540 #F3F4EE; }
+
   body {
     background: var(--bg);
-    color: var(--text);
-    font-family: 'Barlow', sans-serif;
+    color: var(--text-primary);
+    font-family: 'Neue Haas Grotesk Display Pro', 'Barlow', sans-serif;
     min-height: 100vh;
     padding-bottom: 80px;
   }
 
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0,255,136,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,255,136,0.03) 1px, transparent 1px);
-    background-size: 44px 44px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
+  /* ── HERO ── */
   .hero {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 52px 24px 36px;
+    padding: 72px 32px 56px;
     border-bottom: 1px solid var(--border);
+    text-align: center;
   }
 
-  .logo-circle {
-    width: 80px; height: 80px;
-    border-radius: 50%;
-    background: #0D0D0D;
-    border: 2px solid var(--green);
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 20px;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 30px; font-weight: 800;
-    color: var(--green);
+  .hero-inner {
+    max-width: 640px;
+    margin: 0 auto;
   }
-  .logo-circle sup { font-size: 15px; vertical-align: super; }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .eyebrow-dot {
+    width: 5px; height: 5px;
+    border-radius: 0;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .eyebrow-text {
+    font-size: 15px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+  }
 
   h1 {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 44px; font-weight: 800;
-    letter-spacing: 2px; text-transform: uppercase;
-    line-height: 1;
-  }
-  h1 span { color: var(--green); }
-
-  .subtitle {
-    font-size: 17px; color: var(--muted);
-    margin-top: 10px; letter-spacing: 0.5px;
-  }
-
-  .instruction {
-    display: inline-flex; align-items: center; gap: 8px;
-    margin-top: 20px;
-    background: rgba(0,255,136,0.07);
-    border: 1px solid rgba(0,255,136,0.2);
-    border-radius: 100px;
-    padding: 12px 24px;
-    font-size: 16px; color: var(--green);
+    font-size: clamp(36px, 5vw, 58px);
     font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.1;
+    margin: 0 0 16px;
+    letter-spacing: -0.01em;
   }
 
-  .container {
-    position: relative; z-index: 1;
-    max-width: 720px;
+  .subhead {
+    font-size: 19px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 480px;
     margin: 0 auto;
-    padding: 36px 16px 0;
-    display: flex; flex-direction: column; gap: 14px;
   }
 
-  /* PRODUCT BLOCK */
-  .product-block {
-    background: var(--surface);
+  /* ── CONTAINER ── */
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 48px 32px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  /* ── FAMILY GROUP ── */
+  .family-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .family-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .family-label {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .family-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .family-products {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
     border: 1px solid var(--border);
-    border-radius: 18px;
-    overflow: hidden;
-    transition: border-color 0.2s;
-  }
-  .product-block.open {
-    border-color: rgba(0,255,136,0.25);
   }
 
-  /* HEADER — the tappable row */
+  /* products inside a family share one outer border */
+  .family-products .product-block {
+    border: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .family-products .product-block:last-child {
+    border-bottom: none;
+  }
+
+  /* standalone products keep their own border */
+  .product-block {
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  /* ── PRODUCT HEADER ── */
   .product-header {
-    display: flex; align-items: center;
-    gap: 14px;
-    padding: 20px 20px 20px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 24px;
+    background: #ffffff;
     cursor: pointer;
     user-select: none;
-    background: var(--surface2);
+    border-bottom: 1px solid transparent;
     transition: background 0.15s;
   }
-  .product-header:hover { background: #282828; }
+
+  .product-header:hover { background: var(--surface); }
+
   .product-block.open .product-header {
-    border-bottom: 1px solid var(--border);
+    border-bottom-color: var(--border);
+    background: var(--surface);
+  }
+
+  .product-header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
   }
 
   .product-num {
-    width: 44px; height: 44px;
-    border-radius: 10px;
-    background: rgba(0,255,136,0.1);
-    border: 1px solid rgba(0,255,136,0.25);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 17px; font-weight: 800; color: var(--green);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px solid var(--accent-border);
+    min-width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
+    border-radius: 0;
+    letter-spacing: 0.03em;
   }
 
-  .product-header-text { flex: 1; }
-
   .product-name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 26px; font-weight: 800;
-    letter-spacing: 1px; text-transform: uppercase;
-    color: var(--text);
-    line-height: 1;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.2;
   }
 
   .product-hint {
-    font-size: 13px; color: var(--muted);
-    margin-top: 3px;
-    font-weight: 600; letter-spacing: 0.3px;
+    font-size: 15px;
+    color: var(--text-muted);
+    margin-top: 2px;
+    font-weight: 400;
   }
+
   .product-block.open .product-hint { display: none; }
 
-  .chevron {
-    width: 28px; height: 28px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid var(--border);
+  .chevron-wrap {
+    width: 22px; height: 22px;
+    border: 1px solid var(--accent-border);
+    background: var(--accent-dim);
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
-    transition: transform 0.25s, background 0.15s;
-  }
-  .product-block.open .chevron {
-    transform: rotate(180deg);
-    background: rgba(0,255,136,0.1);
-    border-color: rgba(0,255,136,0.3);
-  }
-  .chevron svg { width: 14px; height: 14px; color: var(--muted); }
-  .product-block.open .chevron svg { color: var(--green); }
-
-  /* COLLAPSIBLE BODY */
-  .product-body {
-    display: none;
-  }
-  .product-block.open .product-body {
-    display: block;
+    transition: transform 0.25s ease, background 0.2s, border-color 0.2s;
+    border-radius: 0;
   }
 
-  /* VARIANT SECTIONS */
+  .product-block.open .chevron-wrap {
+    transform: rotate(45deg);
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .chevron-wrap svg path { transition: stroke 0.2s; }
+  .product-block.open .chevron-wrap svg path { stroke: #ffffff; }
+
+  /* ── COLLAPSIBLE BODY ── */
+  .product-body { display: none; }
+  .product-block.open .product-body { display: block; }
+
+  /* ── VARIANT SECTION ── */
   .variant-section {
-    padding: 22px 20px 18px;
+    padding: 24px 24px 20px;
     border-bottom: 1px solid var(--border);
+    background: #ffffff;
   }
   .variant-section:last-child { border-bottom: none; }
 
-  .variant-type-label {
-    font-size: 14px; font-weight: 700;
-    letter-spacing: 2px; text-transform: uppercase;
-    margin-bottom: 14px;
-    display: flex; align-items: center; gap: 8px;
+  .variant-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
   }
 
-  .type-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
-  .dot-mesh     { background: #00FF88; }
-  .dot-atak     { background: #00B4FF; }
-  .dot-meshcore { background: #FFA500; }
-  .label-mesh     { color: #00FF88; }
-  .label-atak     { color: #00B4FF; }
-  .label-meshcore { color: #FFA500; }
+  .variant-dot {
+    width: 5px; height: 5px;
+    border-radius: 0;
+    flex-shrink: 0;
+  }
+  .dot-mesh     { background: #1D9E75; }
+  .dot-atak     { background: #2d6ab4; }
+  .dot-meshcore { background: #9a6520; }
 
+  .variant-label-text {
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .label-mesh     { color: #1D9E75; }
+  .label-atak     { color: #2d6ab4; }
+  .label-meshcore { color: #9a6520; }
+
+  /* ── COLOR GRID ── */
   .color-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+    border: 1px solid var(--border);
   }
 
   .color-btn {
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     gap: 10px;
-    background: var(--bg);
-    border: 2px solid var(--border);
-    border-radius: 14px;
-    padding: 18px 10px;
+    padding: 20px 8px;
     text-decoration: none;
-    transition: border-color 0.15s, background 0.15s, transform 0.1s;
+    border-right: 1px solid var(--border);
+    background: #ffffff;
+    transition: background 0.15s;
     cursor: pointer;
     min-height: 110px;
   }
-  .color-btn:hover {
-    background: #1c1c1c;
-    border-color: #555;
-    transform: scale(1.02);
-  }
-  .color-btn:active { transform: scale(0.98); }
+
+  .color-btn:last-child { border-right: none; }
+  .color-btn:hover { background: var(--surface); }
+  .color-btn:active { background: #eaebe4; }
 
   .color-swatch {
-    width: 34px; height: 34px;
+    width: 28px; height: 28px;
     border-radius: 50%;
-    border: 2px solid rgba(255,255,255,0.15);
+    border: 1px solid var(--border);
     flex-shrink: 0;
   }
-  .swatch-black       { background: #1A1A1A; border-color: #555; }
-  .swatch-white       { background: #F0F0F0; border-color: #ccc; }
-  .swatch-standard    { background: #4A4A4A; border-color: #777; }
-  .swatch-spec5green  { background: #00FF88; border-color: #00cc6a; }
+
+  .swatch-standard    { background: #4A4A4A; border-color: #8a8880; }
+  .swatch-black       { background: #1A1A1A; border-color: #444; }
+  .swatch-white       { background: #F5F5F5; border-color: #D8DACE; }
+  .swatch-spec5green  { background: #1D9E75; border-color: #0F6E56; }
   .swatch-tacgreen    { background: #3B5323; border-color: #5a7a40; }
   .swatch-desert      { background: #C2A06E; border-color: #a87d47; }
 
   .color-label {
-    font-size: 13px; font-weight: 700;
-    color: #CCCCCC;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
     text-align: center;
     line-height: 1.3;
     text-transform: uppercase;
   }
 
-  .review-tag {
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 1px; text-transform: uppercase;
-    color: var(--green);
-    opacity: 0.75;
+  .review-cta {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
   }
 
-  .footer {
-    position: relative; z-index: 1;
-    text-align: center; margin-top: 56px;
-    font-size: 14px; color: var(--muted); letter-spacing: 1px;
+  /* ── FOOTER ── */
+  .page-footer {
+    max-width: 960px;
+    margin: 56px auto 0;
+    padding: 24px 32px 0;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
-  .footer a { color: var(--green); text-decoration: none; }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .footer-dot {
+    width: 5px; height: 5px;
+    border-radius: 0;
+    background: var(--accent);
+  }
+
+  .footer-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-primary);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .footer-link {
+    font-size: 15px;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.03em;
+  }
+  .footer-link:hover { text-decoration: underline; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 720px) {
+    .color-grid { grid-template-columns: repeat(3, 1fr); }
+    .color-btn { border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); }
+    .color-btn:nth-child(3n) { border-right: none; }
+    .color-btn:nth-last-child(-n+3) { border-bottom: none; }
+    .hero, .container, .page-footer { padding-left: 20px; padding-right: 20px; }
+    .product-header { padding: 16px 20px; }
+    .variant-section { padding: 20px 20px 16px; }
+  }
 
   @media (max-width: 480px) {
     .color-grid { grid-template-columns: repeat(2, 1fr); }
-    .product-name { font-size: 22px; }
-    h1 { font-size: 36px; }
-    .color-btn { min-height: 100px; }
+    .color-btn:nth-child(3n) { border-right: 1px solid var(--border); }
+    .color-btn:nth-child(2n) { border-right: none; }
+    .color-btn:nth-last-child(-n+3) { border-bottom: 1px solid var(--border); }
+    .color-btn:nth-last-child(-n+2) { border-bottom: none; }
+    .product-name { font-size: 18px; }
   }
 </style>
 </head>
 <body>
 
 <div class="hero">
-  <div class="logo-circle">S<sup>5</sup></div>
-  <h1>Leave Us a <span>Review</span></h1>
-  <p class="subtitle">Find your product, pick your color &amp; firmware</p>
-  <div class="instruction">&#9733;&nbsp; Tap your product to get started</div>
+  <div class="hero-inner">
+    <div class="eyebrow">
+      <span class="eyebrow-dot"></span>
+      <span class="eyebrow-text">Customer reviews</span>
+    </div>
+    <h1>Leave Us a Review</h1>
+    <p class="subhead">Find your product below, then tap the color and firmware variant that matches your order.</p>
+  </div>
 </div>
 
 <div class="container" id="products"></div>
 
-<div class="footer">
-  <a href="https://specfive.com" target="_blank">specfive.com</a>&nbsp;&nbsp;·&nbsp;&nbsp;Off-Grid LoRa Radios
-</div>
+<footer class="page-footer">
+  <div class="footer-brand">
+    <span class="footer-dot"></span>
+    <span class="footer-name">SpecFive</span>
+  </div>
+  <a class="footer-link" href="https://specfive.com" target="_blank">specfive.com ↗</a>
+</footer>
 
 <script>
 const COLORS = [
@@ -292,92 +427,170 @@ const VARIANTS = [
   { key: 'meshcore', label: 'MeshCore',   dotClass: 'dot-meshcore', labelClass: 'label-meshcore' },
 ];
 
-const PRODUCTS = [
-  'Handheld Node Pro',
-  'Base Station Kit',
-  'Pocket Relay V2',
-  'Solar Mesh Node',
-  'Wearable Tracker',
-  'Fixed Mount Node',
-  'Vehicle Relay Kit',
-  'Repeater Unit',
-  'Long Range Node',
-  'Compact EDC Radio',
-  'Gateway Bridge',
-  'Field Comms Pack',
+// Groups: family label + array of product names.
+// Single-item groups render without the family header.
+const PRODUCT_GROUPS = [
+  {
+    family: 'Trekker Series',
+    products: ['Trekker Bravo', 'Trekker Delta'],
+  },
+  {
+    family: 'Ranger Series',
+    products: ['Ranger', 'Ranger Magnum'],
+  },
+  {
+    family: 'Spectre Series',
+    products: ['Spectre', 'Spectre Pro'],
+  },
+  {
+    family: null,
+    products: ['Base Station Kit'],
+  },
+  {
+    family: null,
+    products: ['Solar Mesh Node'],
+  },
+  {
+    family: null,
+    products: ['Vehicle Relay Kit'],
+  },
+  {
+    family: null,
+    products: ['Repeater Unit'],
+  },
+  {
+    family: null,
+    products: ['Gateway Bridge'],
+  },
+  {
+    family: null,
+    products: ['Field Comms Pack'],
+  },
 ];
+
+function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+let globalIndex = 0;
+
+function buildProductBlock(name) {
+  globalIndex++;
+  const pi = globalIndex;
+
+  const block = document.createElement('div');
+  block.className = 'product-block';
+
+  const header = document.createElement('div');
+  header.className = 'product-header';
+  header.setAttribute('role', 'button');
+  header.setAttribute('tabindex', '0');
+  header.setAttribute('aria-expanded', 'false');
+  header.innerHTML = `
+    <div class="product-header-left">
+      <div class="product-num">${pad(pi)}</div>
+      <div>
+        <div class="product-name">${name}</div>
+        <div class="product-hint">Tap to select firmware &amp; color</div>
+      </div>
+    </div>
+    <div class="chevron-wrap" aria-hidden="true">
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+        <path d="M5 1v8M1 5h8" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+  `;
+
+  const toggle = () => {
+    const isOpen = block.classList.contains('open');
+    document.querySelectorAll('.product-block.open').forEach(b => {
+      b.classList.remove('open');
+      b.querySelector('.product-header').setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      block.classList.add('open');
+      header.setAttribute('aria-expanded', 'true');
+      setTimeout(() => block.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+    }
+  };
+
+  header.addEventListener('click', toggle);
+  header.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+  });
+
+  block.appendChild(header);
+
+  const body = document.createElement('div');
+  body.className = 'product-body';
+
+  VARIANTS.forEach(variant => {
+    const section = document.createElement('div');
+    section.className = 'variant-section';
+
+    const vLabel = document.createElement('div');
+    vLabel.className = 'variant-label';
+    vLabel.innerHTML = `
+      <span class="variant-dot ${variant.dotClass}"></span>
+      <span class="variant-label-text ${variant.labelClass}">${variant.label}</span>
+    `;
+    section.appendChild(vLabel);
+
+    const grid = document.createElement('div');
+    grid.className = 'color-grid';
+
+    COLORS.forEach(color => {
+      const a = document.createElement('a');
+      a.className = 'color-btn';
+      a.href = `https://amazon.com/review/placeholder-${pi}-${variant.key}-${color.key}`;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.innerHTML = `
+        <div class="color-swatch ${color.swatch}"></div>
+        <div class="color-label">${color.label}</div>
+        <div class="review-cta">Review ↗</div>
+      `;
+      grid.appendChild(a);
+    });
+
+    section.appendChild(grid);
+    body.appendChild(section);
+  });
+
+  block.appendChild(body);
+  return block;
+}
 
 function buildPage() {
   const container = document.getElementById('products');
 
-  PRODUCTS.forEach((name, pi) => {
-    const block = document.createElement('div');
-    block.className = 'product-block';
+  PRODUCT_GROUPS.forEach(group => {
+    if (group.family && group.products.length > 1) {
+      // Family group wrapper
+      const groupEl = document.createElement('div');
+      groupEl.className = 'family-group';
 
-    // Header
-    const header = document.createElement('div');
-    header.className = 'product-header';
-    header.innerHTML = `
-      <div class="product-num">${pi + 1}</div>
-      <div class="product-header-text">
-        <div class="product-name">${name}</div>
-        <div class="product-hint">Tap to select firmware &amp; color</div>
-      </div>
-      <div class="chevron">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 12 15 18 9"/>
-        </svg>
-      </div>
-    `;
+      const familyHeader = document.createElement('div');
+      familyHeader.className = 'family-header';
+      familyHeader.innerHTML = `
+        <span class="family-label">${group.family}</span>
+        <span class="family-line"></span>
+      `;
+      groupEl.appendChild(familyHeader);
 
-    header.addEventListener('click', () => {
-      const isOpen = block.classList.contains('open');
-      // Close all others
-      document.querySelectorAll('.product-block.open').forEach(b => b.classList.remove('open'));
-      // Toggle this one
-      if (!isOpen) {
-        block.classList.add('open');
-        block.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
-    });
+      const familyProducts = document.createElement('div');
+      familyProducts.className = 'family-products';
 
-    block.appendChild(header);
-
-    // Body
-    const body = document.createElement('div');
-    body.className = 'product-body';
-
-    VARIANTS.forEach(variant => {
-      const section = document.createElement('div');
-      section.className = 'variant-section';
-
-      const typeLabel = document.createElement('div');
-      typeLabel.className = 'variant-type-label';
-      typeLabel.innerHTML = `<span class="type-dot ${variant.dotClass}"></span><span class="${variant.labelClass}">${variant.label}</span>`;
-      section.appendChild(typeLabel);
-
-      const grid = document.createElement('div');
-      grid.className = 'color-grid';
-
-      COLORS.forEach(color => {
-        const a = document.createElement('a');
-        a.className = 'color-btn';
-        a.href = `https://amazon.com/review/placeholder-${pi+1}-${variant.key}-${color.key}`;
-        a.target = '_blank';
-        a.innerHTML = `
-          <div class="color-swatch ${color.swatch}"></div>
-          <div class="color-label">${color.label}</div>
-          <div class="review-tag">Review &#8599;</div>
-        `;
-        grid.appendChild(a);
+      group.products.forEach(name => {
+        familyProducts.appendChild(buildProductBlock(name));
       });
 
-      section.appendChild(grid);
-      body.appendChild(section);
-    });
-
-    block.appendChild(body);
-    container.appendChild(block);
+      groupEl.appendChild(familyProducts);
+      container.appendChild(groupEl);
+    } else {
+      // Standalone product
+      group.products.forEach(name => {
+        container.appendChild(buildProductBlock(name));
+      });
+    }
   });
 }
 
