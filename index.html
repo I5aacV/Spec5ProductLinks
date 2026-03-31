@@ -104,31 +104,20 @@
   .label-atak { color: #2d6ab4; }
   .label-meshcore { color: #9a6520; }
 
-  /* ─── COLOR GRID ───────────────────────────────────────────
-     Each cell draws its own right + bottom border.
-     The outer .color-grid border provides top + left edges.
-     nth-child rules remove the redundant right border on the
-     last cell of every row and the bottom border on the last row.
-  ──────────────────────────────────────────────────────────── */
+  /* Standard color grid (used for most products) */
   .color-grid {
     display: grid;
     grid-template-columns: repeat(var(--cols, 6), 1fr);
     gap: 0;
     border: 1px solid var(--border);
-    /* Prevent double-border with container */
-    border-right: none;
-    border-bottom: none;
   }
-
   .color-btn {
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     gap: 10px; padding: 20px 8px; text-decoration: none;
-    /* Each cell provides right + bottom border */
-    border-right: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    background: #ffffff;
+    border-right: 1px solid var(--border); background: #ffffff;
     transition: background 0.15s; cursor: pointer; min-height: 110px;
   }
+  .color-btn:last-child { border-right: none; }
   .color-btn:hover { background: var(--surface); }
   .color-btn:active { background: #eaebe4; }
   .color-swatch { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--border); flex-shrink: 0; }
@@ -207,81 +196,25 @@
   .footer-link { font-size: 15px; color: var(--accent); text-decoration: none; letter-spacing: 0.03em; }
   .footer-link:hover { text-decoration: underline; }
 
-  /* ─── RESPONSIVE ─────────────────────────────────────────────
-     Mobile uses a 3-col grid down to 480px, then 2-col.
-     Since each .color-btn owns its right+bottom border, we only
-     need to strip the right border from the last column and the
-     bottom border from the last row — no other overrides needed.
-  ──────────────────────────────────────────────────────────── */
+  /* Responsive */
   @media (max-width: 720px) {
+    .color-grid { grid-template-columns: repeat(3, 1fr) !important; }
+    .color-btn { border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); }
+    .color-btn:nth-child(3n) { border-right: none; }
+    .color-btn:nth-last-child(-n+3) { border-bottom: none; }
     .hero, .container, .page-footer, .discount-banner { padding-left: 20px; padding-right: 20px; }
     .product-header { padding: 16px 20px; }
     .variant-section { padding: 20px 20px 16px; }
     .suboption-label-cell { width: 100px; min-width: 100px; font-size: 11px; }
     .discount-inner { grid-template-columns: 1fr; gap: 20px; padding: 24px; }
     .discount-btn { width: 100%; justify-content: center; }
-
-    /* Force 3-column grid on mobile regardless of desktop --cols */
-    .color-grid {
-      grid-template-columns: repeat(3, 1fr) !important;
-    }
-
-    /* Remove right border from every 3rd cell (last in row) */
-    .color-btn:nth-child(3n) {
-      border-right: none;
-    }
-
-    /* For grids that happen to have only 1 or 2 items,
-       also strip border-right from the actual last item
-       in case it's not a 3rd-column position */
-    .color-btn:last-child {
-      border-right: none;
-    }
-
-    /* Remove bottom border from cells in the last row.
-       We use a "paint-forward" approach: always show bottom
-       border on every cell, then hide it on cells that are
-       in the final row. CSS can't know row count directly,
-       so we use :nth-last-child to target the last N cells
-       where N = number of columns (3). */
-    .color-btn:nth-last-child(-n+3) {
-      border-bottom: none;
-    }
-
-    /* But if a prior row is incomplete, the above rule may
-       incorrectly hide borders on cells that ARE followed by
-       another row. Restore bottom border for any cell that has
-       a sibling more than 3 positions after it in the DOM —
-       handled by keeping the default border-bottom on all cells
-       and only using nth-last-child to strip the final row.
-       This is correct for 3-col grids. */
   }
-
   @media (max-width: 480px) {
-    .color-grid {
-      grid-template-columns: repeat(2, 1fr) !important;
-    }
-
-    /* Strip right border from every 2nd cell */
-    .color-btn:nth-child(3n) {
-      border-right: 1px solid var(--border); /* reset from 720px rule */
-    }
-    .color-btn:nth-child(2n) {
-      border-right: none;
-    }
-    /* Always strip from last child too */
-    .color-btn:last-child {
-      border-right: none;
-    }
-
-    /* Last row = last 2 cells */
-    .color-btn:nth-last-child(-n+3) {
-      border-bottom: 1px solid var(--border); /* reset from 720px rule */
-    }
-    .color-btn:nth-last-child(-n+2) {
-      border-bottom: none;
-    }
-
+    .color-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    .color-btn:nth-child(3n) { border-right: 1px solid var(--border); }
+    .color-btn:nth-child(2n) { border-right: none; }
+    .color-btn:nth-last-child(-n+3) { border-bottom: 1px solid var(--border); }
+    .color-btn:nth-last-child(-n+2) { border-bottom: none; }
     .product-name { font-size: 18px; }
   }
 </style>
@@ -309,11 +242,8 @@
         <span class="discount-eyebrow-text">Get a discount</span>
       </div>
       <p class="discount-heading">Leave a review, get a discount on your next order</p>
-      <p class="discount-body">After leaving your review, send a screenshot to us via our website and we'll send you a <strong>discount code</strong> for your next purchase. Takes less than a minute.</p>
+      <p class="discount-body">After leaving your review, send us a screenshot by email at <strong>general@specfive.com</strong> and we'll send you a <strong>discount code</strong> for your next purchase. Takes less than a minute.</p>
     </div>
-    <a class="discount-btn" href="https://specfive.com/pages/contact" target="_blank">
-      Send Screenshot <span>↗</span>
-    </a>
   </div>
 </div>
 
@@ -326,7 +256,7 @@
 </footer>
 
 <script>
-// ── SWATCHES ──────────────────────────────────────
+// ── SWATCHES ──────────────────────────────────────────
 const SWATCHES = {
   standard:   { label: 'Standard',       cls: 'swatch-standard'   },
   black:      { label: 'Black',          cls: 'swatch-black'      },
@@ -337,7 +267,12 @@ const SWATCHES = {
   darkgray:   { label: 'Dark Gray',      cls: 'swatch-darkgray'   },
 };
 
-// ── PRODUCT DATA ──────────────────────────────────
+// ── PRODUCT DATA ──────────────────────────────────────
+// Each product has a `body` builder function for flexibility.
+// type: 'standard' = color grid per variant
+// type: 'suboption' = variant rows with sub-options (e.g. SD card)
+// type: 'custom' = raw HTML
+
 const PRODUCT_GROUPS = [
   // ── TREKKER SERIES ───────────────────────────────
   {
@@ -568,6 +503,8 @@ const PRODUCT_GROUPS = [
   },
 
   // ── NOMAD 2 ──────────────────────────────────────
+  // 3-dimension: RAM (4GB/8GB) × Tier (Base/Ready/Recon) × Color (Gray/Desert/TacGreen)
+  // Rendered as suboption rows = "RAM-Tier", columns = colors
   {
     family: null,
     products: [
@@ -876,6 +813,7 @@ function colorBtn(colorKey, url) {
   </a>`;
 }
 
+// Standard variant section: color grid — returns null if no live links
 function buildStandardVariantSection(variant) {
   const liveColors = variant.colors.filter(c => c.url && c.url !== '#placeholder');
   if (liveColors.length === 0) return null;
@@ -891,6 +829,7 @@ function buildStandardVariantSection(variant) {
   return html;
 }
 
+// Suboption variant section — returns null if no live links anywhere
 function buildSuboptionVariantSection(variant) {
   const liveSuboptions = variant.suboptions.map(sub => ({
     ...sub,
@@ -932,6 +871,7 @@ function buildProductBlock(product) {
   const block = document.createElement('div');
   block.className = 'product-block';
 
+  // Header
   const header = document.createElement('div');
   header.className = 'product-header';
   header.setAttribute('role', 'button');
@@ -967,6 +907,7 @@ function buildProductBlock(product) {
   });
   block.appendChild(header);
 
+  // Body
   const body = document.createElement('div');
   body.className = 'product-body';
   let bodyHTML = '';
